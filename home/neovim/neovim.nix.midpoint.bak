@@ -1,0 +1,232 @@
+{
+  pkgs,
+  lib,
+  cyberdream,
+  ...
+}: {
+  programs.nvf = {
+    enable = true;
+    settings.vim = {
+      theme.enable = lib.mkForce false;
+
+      globals = {
+        user42 = "neoyuls";
+        mail42 = "neoyuls@student.42.es";
+        mapleader = " ";
+      };
+
+      options = {
+        number = true;
+        relativenumber = true;
+        tabstop = 4;
+        shiftwidth = 4;
+        expandtab = false;
+        scrolloff = 8;
+      };
+
+      treesitter = {
+        enable = true;
+        addDefaultGrammars = true;
+      };
+
+      autopairs.nvim-autopairs.enable = true;
+
+      lsp.enable = true;
+
+      binds.whichKey.enable = true;
+
+      autocomplete.nvim-cmp.enable = true;
+
+      languages = {
+        clang = {
+          enable = true;
+          lsp.enable = true;
+          treesitter.enable = true;
+        };
+        nix = {
+          enable = true;
+          lsp.enable = true;
+          treesitter.enable = true;
+        };
+        bash = {
+          enable = true;
+          treesitter.enable = true;
+        };
+      };
+
+      git = {
+        enable = true;
+        gitsigns = {
+          enable = true;
+          codeActions.enable = true;
+        };
+      };
+
+      telescope = {
+        enable = true;
+        mappings = {
+          findFiles = "<leader>ff";
+          liveGrep = "<leader>fg";
+          buffers = "<leader>fb";
+          helpTags = "<leader>fh";
+        };
+      };
+
+      statusline.lualine.enable = true;
+
+      filetree.nvimTree = {
+        enable = true;
+        mappings.toggle = "<leader>e";
+        setupOpts = lib.mkForce {};
+      };
+
+      extraPlugins = {
+        ccc-nvim = {
+          package = pkgs.vimPlugins.ccc-nvim;
+        };
+        vim-42header = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "vim-42header";
+            src = pkgs.fetchFromGitHub {
+              owner = "42Paris";
+              repo = "42header";
+              rev = "master";
+              hash = "sha256-xdH/SeGv1bfKMmJ9cHYd5V+ynFohzprnUC8eVer1VcI=";
+            };
+          };
+        };
+        cyberdream-nvim = {
+          package = pkgs.vimUtils.buildVimPlugin {
+            name = "cyberdream.nvim";
+            src = cyberdream.outPath;
+          };
+        };
+        render-markdown = {
+          package = pkgs.vimPlugins.render-markdown-nvim;
+        };
+        nvim-nio = {
+          package = pkgs.vimPlugins.nvim-nio;
+        };
+        hardtime-nvim = {
+          package = pkgs.vimPlugins.hardtime-nvim;
+          setup = ''require("hardtime").setup()'';
+          after = ["nvim-nio"];
+        };
+      };
+
+      luaConfigPost = ''
+        vim.opt.termguicolors = true
+
+        local raw_hex_ns = vim.api.nvim_create_namespace("raw_hex_colors")
+        local function raw_hex_fg(hex)
+          local r = tonumber(hex:sub(1, 2), 16)
+          local g = tonumber(hex:sub(3, 4), 16)
+          local b = tonumber(hex:sub(5, 6), 16)
+          if (0.299 * r + 0.587 * g + 0.114 * b) > 128 then
+            return "#000000"
+          end
+          return "#ffffff"
+        end
+        local function update_raw_hex_highlights(bufnr)
+          bufnr = bufnr or vim.api.nvim_get_current_buf()
+          if not vim.api.nvim_buf_is_valid(bufnr) then return end
+          vim.api.nvim_buf_clear_namespace(bufnr, raw_hex_ns, 0, -1)
+          local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+          for i, line in ipairs(lines) do
+            local init = 1
+            while true do
+              local s, e, hex = line:find([=[["'](%x%x%x%x%x%x)["']]=], init)
+              if not s then break end
+              local hl = "RawHex" .. hex:upper()
+              vim.api.nvim_set_hl(0, hl, { bg = "#" .. hex, fg = raw_hex_fg(hex) })
+              vim.api.nvim_buf_set_extmark(bufnr, raw_hex_ns, i - 1, s, {
+                end_col = e - 1,
+                hl_group = hl,
+              })
+              init = e + 1
+            end
+          end
+        end
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "TextChangedI" }, {
+          pattern = { "*.yaml", "*.yml" },
+          callback = function(ev) update_raw_hex_highlights(ev.buf) end,
+        })
+
+        require("ccc").setup({ highlighter = { auto_enable = true } })
+        require("cyberdream").setup({
+          italic_comments = true,
+          colors = {
+            bg            = "#000000",
+            bg_alt        = "#1a0c14",
+            bg_highlight  = "#30131f",
+            fg            = "#e8a0a8",
+            grey          = "#7a2e4c",
+            blue          = "#8830a8",
+            green         = "#c86888",
+            cyan          = "#f08090",
+            red           = "#e82050",
+            yellow        = "#f2c8a8",
+            magenta       = "#b840a0",
+            pink          = "#f08090",
+            orange        = "#e87860",
+            purple        = "#b840a0",
+          },
+        })
+        vim.cmd("colorscheme cyberdream")
+        require("render-markdown").setup({})
+        require("lualine").setup({ options = { theme = "cyberdream" } })
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = "nix",
+          callback = function()
+            vim.opt_local.tabstop = 2
+            vim.opt_local.shiftwidth = 2
+            vim.opt_local.expandtab = true
+          end,
+        })
+        local cmp = require("cmp")
+        cmp.setup({
+          completion = { autocomplete = false },
+          preselect = cmp.PreselectMode.None,
+          sources = cmp.config.sources(
+            { { name = "nvim_lsp", max_item_count = 10 } },
+            { { name = "buffer", max_item_count = 5, keyword_length = 4 } }
+          ),
+        })
+        vim.keymap.set("i", "<C-Space>", function() cmp.complete() end, { desc = "Trigger completion" })
+      '';
+
+      keymaps = [
+        {
+          key = "<leader>cp";
+          mode = ["n"];
+          action = ":CccPick<CR>";
+          desc = "Open Color Picker";
+        }
+        {
+          key = "<F1>";
+          mode = ["n"];
+          action = ":Stdheader<CR>";
+          desc = "Insert 42 header";
+        }
+        {
+          key = "<C-BS>";
+          mode = ["i"];
+          action = "<C-w>";
+          desc = "delete previous word";
+        }
+        {
+          key = "<leader>n";
+          mode = ["n"];
+          action = ":!norminette %<CR>";
+          desc = "Run norminette on current file";
+        }
+        {
+          key = "<leader>m";
+          mode = ["n"];
+          action = ":RenderMarkdown toggle<CR>";
+          desc = "markdown viewer toggle";
+        }
+      ];
+    };
+  };
+}

@@ -1,0 +1,7 @@
+{
+  username = "changeme";
+  hostName = "changeme";
+  gitName = "changeme";
+  email = "changeme@example.com";
+  mail42 = "changeme@example.com";
+}

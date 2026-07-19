@@ -1,0 +1,93 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+# Lain Rose — derived from /etc/nixos/assets/lain-rose.yaml
+
+[mgr]
+
+syntect_theme   = "~/.config/yazi/lain-rose.tmTheme"
+
+border_style    = { fg = "#7a4462" }
+cwd             = { fg = "#f49ab0" }
+find_keyword    = { bold = true, fg = "#f0d090" }
+find_position   = { fg = "#faeaec" }
+marker_copied   = { bg = "#f0d090", fg = "#1a0c14" }
+marker_cut      = { bg = "#e82050", fg = "#1a0c14" }
+marker_selected = { bg = "#36192a", fg = "#e070c0" }
+count_selected  = { bg = "#e070c0", fg = "#1a0c14" }
+count_copied    = { bg = "#f0d090", fg = "#1a0c14" }
+count_cut       = { bg = "#e82050", fg = "#1a0c14" }
+
+[cmp]
+active   = { bg = "#36192a", fg = "#f49ab0" }
+border   = { fg = "#e070c0" }
+inactive = { fg = "#edbac3" }
+
+[tabs]
+active   = { bg = "#e070c0", fg = "#1a0c14" }
+inactive = { bg = "#36192a", fg = "#edbac3" }
+
+[filetype]
+rules = [
+    { fg = "#f49ab0", mime = "image/*" },
+    { fg = "#f0d090", mime = "video/*" },
+    { fg = "#f0d090", mime = "audio/*" },
+    { fg = "#e070c0", mime = "application/zip" },
+    { fg = "#e070c0", mime = "application/gzip" },
+    { fg = "#e070c0", mime = "application/x-tar" },
+    { fg = "#e070c0", mime = "application/x-bzip" },
+    { fg = "#e070c0", mime = "application/x-bzip2" },
+    { fg = "#e070c0", mime = "application/x-7z-compressed" },
+    { fg = "#e070c0", mime = "application/x-rar" },
+    { fg = "#e070c0", mime = "application/xz" },
+    { fg = "#b05c82", mime = "application/doc" },
+    { fg = "#b05c82", mime = "application/pdf" },
+    { fg = "#b05c82", mime = "application/rtf" },
+    { fg = "#b05c82", mime = "application/vnd.*" },
+    { bold = true, fg = "#e070c0", mime = "inode/directory" },
+    { fg = "#edbac3", mime = "*" }
+]
+
+[help]
+desc    = { fg = "#edbac3" }
+footer  = { fg = "#9a6878" }
+hovered = { bg = "#36192a", fg = "#f49ab0" }
+on      = { fg = "#e070c0" }
+run     = { fg = "#f49ab0" }
+
+[input]
+border   = { fg = "#e070c0" }
+selected = { bg = "#36192a" }
+title    = { fg = "#f49ab0" }
+value    = { fg = "#edbac3" }
+
+[pick]
+active   = { fg = "#f49ab0" }
+border   = { fg = "#e070c0" }
+inactive = { fg = "#edbac3" }
+
+[mode]
+normal_main = { bg = "#e070c0", bold = true, fg = "#1a0c14" }
+select_main = { bg = "#f0d090", bold = true, fg = "#1a0c14" }
+unset_main  = { bg = "#e82050", bold = true, fg = "#1a0c14" }
+
+[status]
+perm_sep        = { fg = "#a85e74" }
+perm_type       = { fg = "#e070c0" }
+perm_read       = { fg = "#f0d090" }
+perm_write      = { fg = "#e82050" }
+perm_exec       = { fg = "#b05c82" }
+progress_error  = { bg = "#1a0c14", fg = "#e82050" }
+progress_label  = { bg = "#1a0c14", fg = "#edbac3" }
+progress_normal = { bg = "#1a0c14", fg = "#e070c0" }
+
+[tasks]
+border  = { fg = "#e070c0" }
+hovered = { bg = "#36192a", fg = "#f49ab0" }
+title   = { fg = "#edbac3" }
+
+[which]
+cand             = { fg = "#f49ab0" }
+desc             = { fg = "#edbac3" }
+mask             = { bg = "#1a0c14" }
+rest             = { fg = "#f49ab0" }
+separator_style  = { fg = "#a85e74" }

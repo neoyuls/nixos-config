@@ -1,0 +1,23 @@
+# Personal identifiers (username, hostname, git name/email) — see local.nix.example
+local.nix
+
+# Nix build results
+result
+result-*
+
+# direnv
+.direnv/
+.envrc.local
+
+# secrets — never commit real values
+secrets.nix
+secrets/
+*.pem
+*.key
+.env
+
+# editor/backup cruft
+*.bak
+*.midpoint.bak
+*~
+*.orig

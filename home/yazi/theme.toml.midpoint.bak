@@ -1,0 +1,93 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+# Lain Rose — derived from /etc/nixos/assets/lain-rose.yaml
+
+[mgr]
+
+syntect_theme   = "~/.config/yazi/lain-rose.tmTheme"
+
+border_style    = { fg = "#30131f" }
+cwd             = { fg = "#f08090" }
+find_keyword    = { bold = true, fg = "#f2c8a8" }
+find_position   = { fg = "#f5d5d8" }
+marker_copied   = { bg = "#f2c8a8", fg = "#1a0c14" }
+marker_cut      = { bg = "#e82050", fg = "#f5d5d8" }
+marker_selected = { bg = "#30131f", fg = "#b840a0" }
+count_selected  = { bg = "#b840a0", fg = "#1a0c14" }
+count_copied    = { bg = "#f2c8a8", fg = "#1a0c14" }
+count_cut       = { bg = "#e82050", fg = "#1a0c14" }
+
+[cmp]
+active   = { bg = "#30131f", fg = "#f08090" }
+border   = { fg = "#b840a0" }
+inactive = { fg = "#e8a0a8" }
+
+[tabs]
+active   = { bg = "#b840a0", fg = "#1a0c14" }
+inactive = { bg = "#30131f", fg = "#e8a0a8" }
+
+[filetype]
+rules = [
+    { fg = "#f08090", mime = "image/*" },
+    { fg = "#f2c8a8", mime = "video/*" },
+    { fg = "#f2c8a8", mime = "audio/*" },
+    { fg = "#b840a0", mime = "application/zip" },
+    { fg = "#b840a0", mime = "application/gzip" },
+    { fg = "#b840a0", mime = "application/x-tar" },
+    { fg = "#b840a0", mime = "application/x-bzip" },
+    { fg = "#b840a0", mime = "application/x-bzip2" },
+    { fg = "#b840a0", mime = "application/x-7z-compressed" },
+    { fg = "#b840a0", mime = "application/x-rar" },
+    { fg = "#b840a0", mime = "application/xz" },
+    { fg = "#c86888", mime = "application/doc" },
+    { fg = "#c86888", mime = "application/pdf" },
+    { fg = "#c86888", mime = "application/rtf" },
+    { fg = "#c86888", mime = "application/vnd.*" },
+    { bold = true, fg = "#b840a0", mime = "inode/directory" },
+    { fg = "#e8a0a8", mime = "*" }
+]
+
+[help]
+desc    = { fg = "#e8a0a8" }
+footer  = { fg = "#9a5a68" }
+hovered = { bg = "#30131f", fg = "#f08090" }
+on      = { fg = "#b840a0" }
+run     = { fg = "#f08090" }
+
+[input]
+border   = { fg = "#b840a0" }
+selected = { bg = "#30131f" }
+title    = { fg = "#f08090" }
+value    = { fg = "#e8a0a8" }
+
+[pick]
+active   = { fg = "#f08090" }
+border   = { fg = "#b840a0" }
+inactive = { fg = "#e8a0a8" }
+
+[mode]
+normal_main = { bg = "#b840a0", bold = true, fg = "#1a0c14" }
+select_main = { bg = "#f2c8a8", bold = true, fg = "#1a0c14" }
+unset_main  = { bg = "#e82050", bold = true, fg = "#1a0c14" }
+
+[status]
+perm_sep        = { fg = "#7a2e4c" }
+perm_type       = { fg = "#b840a0" }
+perm_read       = { fg = "#f2c8a8" }
+perm_write      = { fg = "#e82050" }
+perm_exec       = { fg = "#c86888" }
+progress_error  = { bg = "#1a0c14", fg = "#e82050" }
+progress_label  = { bg = "#1a0c14", fg = "#e8a0a8" }
+progress_normal = { bg = "#1a0c14", fg = "#b840a0" }
+
+[tasks]
+border  = { fg = "#b840a0" }
+hovered = { bg = "#30131f", fg = "#f08090" }
+title   = { fg = "#e8a0a8" }
+
+[which]
+cand             = { fg = "#f08090" }
+desc             = { fg = "#e8a0a8" }
+mask             = { bg = "#1a0c14" }
+rest             = { fg = "#f08090" }
+separator_style  = { fg = "#7a2e4c" }

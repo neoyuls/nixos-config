@@ -1,0 +1,16 @@
+--- a/drivers/bluetooth/btmtk.c
++++ b/drivers/bluetooth/btmtk.c
+@@ -678,8 +678,11 @@
+ 	case BTMTK_WMT_FUNC_CTRL:
+ 		if (!skb_pull_data(data->evt_skb,
+ 				   sizeof(wmt_evt_funcc->status))) {
+-			err = -EINVAL;
+-			goto err_free_skb;
++			/* Newer firmware (e.g. MT7961 rev 0x008a) omits the
++			 * 2-byte status field; treat as ON_DONE so setup proceeds.
++			 */
++			status = BTMTK_WMT_ON_DONE;
++			break;
+ 		}
+
+ 		wmt_evt_funcc = (struct btmtk_hci_wmt_evt_funcc *)wmt_evt;

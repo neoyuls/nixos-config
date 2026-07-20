@@ -4,7 +4,7 @@
     shellAliases = {
       vim = "nvim";
       svim = "sudo nvim";
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixyuls";
+      rebuild = "sudo nixos-rebuild switch --flake 'path:/home/yuls/nixos-config#nixyuls' --impure";
       update = "sudo nix flake update --flake /etc/nixos";
       optimize = "nix-collect-garbage && nix-store --optimize";
       cc42 = "gcc -Wall -Wextra -Werror";

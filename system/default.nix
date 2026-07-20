@@ -9,18 +9,6 @@
     (final: prev: {
       # openldap tests fail in sandboxed builds due to network access
       openldap = prev.openldap.overrideAttrs (_: {doCheck = false;});
-      # pdal 2.9.3 fails against gdal 3.12: GDAL made GetMetadata return
-      # CSLConstList (const char* const*), but pdal assigns it to char**.
-      # papszMetadata is read-only here, so widening the type is safe.
-      # Remove once nixpkgs patches/bumps pdal (breaks qgis->grass->pdal otherwise).
-      pdal = prev.pdal.overrideAttrs (old: {
-        postPatch =
-          (old.postPatch or "")
-          + ''
-            substituteInPlace pdal/private/gdal/Raster.cpp \
-              --replace-fail "char **papszMetadata = NULL;" "CSLConstList papszMetadata = NULL;"
-          '';
-      });
     })
   ];
   imports = [
@@ -477,5 +465,5 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment? Yes I did :)
 }

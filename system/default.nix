@@ -49,7 +49,7 @@
 
   # Locale & Time
   time.timeZone = "America/Mexico_City";
-  i18n.defaultLocale = "en_US.UTF8/UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Keyboard
   services.xserver.xkb = {

@@ -6,7 +6,7 @@ in {
   xdg.dataFile."QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini".text = ''
     [UI]
     UITheme=Night Mapping
-    customStyleSheet=/home/yuls/.config/QGIS/lain-rose.qss
+    customStyleSheet=${config.home.homeDirectory}/.config/QGIS/lain-rose.qss
   '';
 
   # Custom QSS layered on top of Night Mapping to apply lain-rose palette

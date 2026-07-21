@@ -190,7 +190,7 @@
         commands = [
           {
             command = "${pkgs.systemd}/bin/systemctl suspend";
-            options = ["NOPASSWD "];
+            options = ["NOPASSWD"];
           }
           {
             command = "${pkgs.systemd}/bin/reboot";
@@ -327,6 +327,7 @@
     chroma
     fuzzel
     pdftk
+    brightnessctl # used by niri XF86MonBrightness* keybinds
 
     # Network tools
     proton-vpn

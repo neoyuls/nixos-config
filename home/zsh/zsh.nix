@@ -1,11 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     shellAliases = {
       vim = "nvim";
       svim = "sudo nvim";
-      rebuild = "sudo nixos-rebuild switch --flake 'path:/home/yuls/nixos-config#nixyuls' --impure";
-      update = "sudo nix flake update --flake /etc/nixos";
+      rebuild = "sudo nixos-rebuild switch --flake 'path:${config.home.homeDirectory}/nixos-config#nixyuls' --impure";
+      update = "sudo nix flake update --flake ${config.home.homeDirectory}/nixos-config";
       optimize = "nix-collect-garbage && nix-store --optimize";
       cc42 = "gcc -Wall -Wextra -Werror";
       disk = "df -h | grep nvme";

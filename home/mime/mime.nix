@@ -2,7 +2,7 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      # PDF & ebooks (swap to "org.kde.okular.desktop" once okular is added)
+      # PDF & ebooks
       "application/pdf" = ["org.kde.okular.desktop"];
       "application/epub+zip" = ["org.pwmt.zathura.desktop"];
       "application/x-fictionbook" = ["org.pwmt.zathura.desktop"];
@@ -66,31 +66,32 @@
       "application/x-bittorrent" = ["org.qbittorrent.qBittorrent.desktop"];
       "x-scheme-handler/magnet" = ["org.qbittorrent.qBittorrent.desktop"];
 
-      # LibreOffice — Writer
-      "application/vnd.oasis.opendocument.text" = ["writer.desktop"];
-      "application/msword" = ["writer.desktop"];
-      "application/vnd.ms-word" = ["writer.desktop"];
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = ["writer.desktop"];
-      "application/rtf" = ["writer.desktop"];
-      "text/rtf" = ["writer.desktop"];
+      # ONLYOFFICE handles all office formats via a single desktop entry
+      # Documents
+      "application/vnd.oasis.opendocument.text" = ["onlyoffice-desktopeditors.desktop"];
+      "application/msword" = ["onlyoffice-desktopeditors.desktop"];
+      "application/vnd.ms-word" = ["onlyoffice-desktopeditors.desktop"];
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = ["onlyoffice-desktopeditors.desktop"];
+      "application/rtf" = ["onlyoffice-desktopeditors.desktop"];
+      "text/rtf" = ["onlyoffice-desktopeditors.desktop"];
 
-      # LibreOffice — Calc
-      "application/vnd.oasis.opendocument.spreadsheet" = ["calc.desktop"];
-      "application/vnd.ms-excel" = ["calc.desktop"];
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = ["calc.desktop"];
-      "text/csv" = ["calc.desktop"];
-      "text/comma-separated-values" = ["calc.desktop"];
+      # Spreadsheets
+      "application/vnd.oasis.opendocument.spreadsheet" = ["onlyoffice-desktopeditors.desktop"];
+      "application/vnd.ms-excel" = ["onlyoffice-desktopeditors.desktop"];
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = ["onlyoffice-desktopeditors.desktop"];
+      "text/csv" = ["onlyoffice-desktopeditors.desktop"];
+      "text/comma-separated-values" = ["onlyoffice-desktopeditors.desktop"];
 
-      # LibreOffice — Impress
-      "application/vnd.oasis.opendocument.presentation" = ["impress.desktop"];
-      "application/vnd.ms-powerpoint" = ["impress.desktop"];
-      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = ["impress.desktop"];
+      # Presentations
+      "application/vnd.oasis.opendocument.presentation" = ["onlyoffice-desktopeditors.desktop"];
+      "application/vnd.ms-powerpoint" = ["onlyoffice-desktopeditors.desktop"];
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = ["onlyoffice-desktopeditors.desktop"];
 
-      # LibreOffice — Draw
-      "application/vnd.oasis.opendocument.graphics" = ["draw.desktop"];
+      # Graphics/drawings
+      "application/vnd.oasis.opendocument.graphics" = ["onlyoffice-desktopeditors.desktop"];
 
       # App scheme handlers
-      "x-scheme-handler/discord" = ["vesktop.desktop"];
+      "x-scheme-handler/discord" = ["discord.desktop"];
       "x-scheme-handler/stremio" = ["com.stremio.Stremio.desktop"];
       "x-scheme-handler/zotero" = ["zotero.desktop"];
       "x-scheme-handler/obsidian" = ["obsidian.desktop"];

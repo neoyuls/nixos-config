@@ -43,7 +43,11 @@
   };
 
   xdg.configFile = {
-    "niri/config.kdl".source = ./niri/config.kdl;
+    # Templated (not a plain `source`) so @homeDir@ is substituted with the
+    # actual home path -- niri's KDL include/spawn args are not shell-expanded.
+    "niri/config.kdl".text =
+      builtins.replaceStrings ["@homeDir@"] [config.home.homeDirectory]
+      (builtins.readFile ./niri/config.kdl);
     "kitty/tabs.conf".source = ./kitty/tabs.conf;
     "yazi/theme.toml".source = ./yazi/theme.toml;
     "emulsion/cfg.toml".source = ./emulsion/cfg.toml;

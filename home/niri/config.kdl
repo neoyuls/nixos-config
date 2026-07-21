@@ -167,7 +167,7 @@ window-rule {
 	clip-to-geometry true
 }
 
-include "/home/yuls/.config/niri/colors.kdl"
+include "@homeDir@/.config/niri/colors.kdl"
 
 binds {
 	Mod+S            { show-hotkey-overlay; }
@@ -178,7 +178,7 @@ Mod+Shift+B      { spawn "noctalia" "msg" "bar-toggle"; }
 	Mod+E            { spawn "ghostty" "-e" "sudo" "yazi"; }
 	Mod+M            { spawn "ghostty" "-e" "termusic"; }
 	Mod+T            { spawn "ghostty" "-e" "youtube-tui"; }
-	Mod+N            { spawn "ghostty" "--working-directory=/etc/nixos"; }
+	Mod+N            { spawn "ghostty" "--working-directory=@homeDir@/nixos-config"; }
 
 	Mod+Q            { close-window; }
 	Mod+F            { maximize-column; }

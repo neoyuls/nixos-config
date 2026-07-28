@@ -79,7 +79,13 @@
     modesetting.enable = true;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # `stable` (595.84) has a use-after-free in nv_dma_release_sgt that corrupted
+    # kernel memory and caused a reboot panic (2026-07-28). Moved to the mature
+    # `production` branch. Alternatives if this doesn't resolve it:
+    #   - config.boot.kernelPackages.nvidiaPackages.beta  (newer; may carry the fix)
+    #   - set `open = true` below (low odds: nv_dma_release_sgt is in the shared OS layer)
+    # Watch for recurrence: journalctl -k -g nv_dma_release_sgt
+    package = config.boot.kernelPackages.nvidiaPackages.production;
     powerManagement.enable = true;
     powerManagement.finegrained = true;
     # hybrid graphics settings

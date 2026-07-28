@@ -79,6 +79,8 @@
     slurp
     wl-clipboard
     nwg-displays
+    bolt-launcher
+    runelite
   ];
   home.pointerCursor.enable = true;
   home.pointerCursor = {

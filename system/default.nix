@@ -413,7 +413,6 @@
     qbittorrent
 
     # Misc
-    discord
     adb-sync
     android-tools
 

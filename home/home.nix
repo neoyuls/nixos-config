@@ -25,7 +25,7 @@
     ./ghostty/ghostty.nix
     ./fastfetch/fastfetch.nix
     ./firefox/firefox.nix
-    # ./vesktop/vesktop.nix
+    ./vesktop/vesktop.nix
     ./spicetify/spicetify.nix
     ./zsh/zsh.nix
     ./qgis/qgis.nix

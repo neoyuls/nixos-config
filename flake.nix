@@ -21,6 +21,10 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    z-async = {
+      url = "github:marlonrichert/z-async/5370537de80670b4a97e49cd253d15067709c0a6";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -106,6 +110,17 @@
         stylix.nixosModules.stylix # and this
         ./system/default.nix
         home-manager.nixosModules.home-manager
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              zsh-autocomplete = prev.zsh-autocomplete.overrideAttrs (old: {
+                installPhase = old.installPhase + ''
+                  cp -R ${inputs.z-async} $out/share/zsh-autocomplete/z-async
+                '';
+              });
+            })
+          ];
+        }
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

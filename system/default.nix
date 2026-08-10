@@ -390,7 +390,6 @@
     lutris
     wineWow64Packages.staging
     winetricks
-    mindustry
 
     # Notes and documents
     obsidian

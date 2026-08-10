@@ -313,7 +313,8 @@
         "noctalia": "noctalia",
         "nvf": "nvf",
         "spicetify-nix": "spicetify-nix",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "z-async": "z-async"
       }
     },
     "spicetify-nix": {
@@ -460,6 +461,23 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "z-async": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777988833,
+        "narHash": "sha256-tPosFoZSaUShaRpv7ca9BdOMREfmhnzjd/VKHSshhXo=",
+        "owner": "marlonrichert",
+        "repo": "z-async",
+        "rev": "5370537de80670b4a97e49cd253d15067709c0a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marlonrichert",
+        "repo": "z-async",
+        "rev": "5370537de80670b4a97e49cd253d15067709c0a6",
         "type": "github"
       }
     }

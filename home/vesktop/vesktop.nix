@@ -17,7 +17,7 @@ in {
 
     vencord.settings = {
       useQuickCss = true;
-      transparent = true;
+      transparent = false;
       frameless = false;
       autoUpdate = true;
       autoUpdateNotification = true;

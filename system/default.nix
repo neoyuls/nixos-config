@@ -48,7 +48,7 @@
   networking.networkmanager.enable = true;
 
   # Locale & Time
-  time.timeZone = "America/Mexico_City";
+  time.timeZone = "Europe/Madrid";
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Keyboard
@@ -362,6 +362,7 @@
       ]))
 
     # Dev
+    pnpm
     micromamba
     grass
     alejandra

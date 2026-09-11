@@ -114,9 +114,11 @@
           nixpkgs.overlays = [
             (final: prev: {
               zsh-autocomplete = prev.zsh-autocomplete.overrideAttrs (old: {
-                installPhase = old.installPhase + ''
-                  cp -R ${inputs.z-async} $out/share/zsh-autocomplete/z-async
-                '';
+                installPhase =
+                  old.installPhase
+                  + ''
+                    cp -R ${inputs.z-async} $out/share/zsh-autocomplete/z-async
+                  '';
               });
             })
           ];

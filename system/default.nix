@@ -134,7 +134,7 @@
   };
 
   # Capture niri crashes/logs persistently so we can diagnose recurrences.
-  services.journald.storage = "persistent";
+  services.journald.settings.Journal.Storage = "persistent";
   # xdg-desktop-portal
   xdg.portal = {
     enable = true;
@@ -408,7 +408,7 @@
     qbittorrent
 
     # Misc
-    adb-sync
+    better-adb-sync
     android-tools
 
     (pkgs.callPackage ../apps/sldl.nix {})

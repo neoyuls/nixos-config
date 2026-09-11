@@ -253,11 +253,6 @@
     serif = ["Noto Serif"];
   };
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=256M
-    RuntimeMaxUse=64M
-  '';
-
   # VM settings
   virtualisation.libvirtd = {
     enable = true;

@@ -1,6 +1,9 @@
 # Personal identifiers (username, hostname, git name/email) — see local.nix.example
 local.nix
 
+# ignore flake.lock to prevent git tree dirty messages
+
+flake.lock
 # Nix build results
 result
 result-*

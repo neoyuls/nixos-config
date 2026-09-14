@@ -375,6 +375,7 @@
     claude-code
     opencode
     (pkgs.callPackage ../apps/dsh {})
+    (pkgs.callPackage ../apps/dsh-tui.nix {})
 
     # Man pages
     man-pages

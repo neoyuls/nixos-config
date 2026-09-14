@@ -374,6 +374,7 @@
     gdal
     claude-code
     opencode
+    (pkgs.callPackage ../apps/dsh {})
 
     # Man pages
     man-pages

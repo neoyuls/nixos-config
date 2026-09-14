@@ -4,6 +4,29 @@
   ...
 }: {
   stylix.targets.noctalia.enable = false;
+
+  # noctalia picks its network backend once, at startup: NetworkManager, else
+  # wpa_supplicant, else iwd. The user service and NetworkManager.service come
+  # up at the same instant, so noctalia can lose the race, see no
+  # org.freedesktop.NetworkManager on the system bus, and latch onto the
+  # wpa_supplicant backend for the whole process lifetime -- which then can't
+  # read anything (its D-Bus policy only allows root/the wpa_supplicant group),
+  # leaving the wifi widget blank. Block startup until the name is claimed.
+  systemd.user.services.noctalia.Service.ExecStartPre = let
+    waitForNM = pkgs.writeShellScript "noctalia-wait-for-networkmanager" ''
+      i=0
+      while [ "$i" -lt 100 ]; do
+        if ${pkgs.systemd}/bin/busctl --system status org.freedesktop.NetworkManager >/dev/null 2>&1; then
+          exit 0
+        fi
+        ${pkgs.coreutils}/bin/sleep 0.1
+        i=$((i + 1))
+      done
+      # Not there after 10s: start anyway and fall back as before.
+      exit 0
+    '';
+  in "${waitForNM}";
+
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
@@ -34,8 +57,8 @@
         capsule = true;
         reserve_space = false;
         thickness = 30;
-        margin_h = 10;
-        margin_v = 8;
+        margin_ends = 10; # inset from each end of the bar (was margin_h pre-5.1)
+        margin_edge = 8; # distance from the screen edge (was margin_v pre-5.1)
         radius = 12;
         start = ["launcher" "clock" "sysmon" "active_window" "media"];
         center = ["workspaces"];
@@ -51,7 +74,8 @@
           vertical_format = "{:%H %M}";
         };
         workspaces = {
-          display = "id";
+          label_source = "id";
+          show_labels = true;
           hide_when_empty = false;
         };
         "control-center" = {

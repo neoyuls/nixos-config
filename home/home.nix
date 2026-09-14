@@ -81,6 +81,7 @@
     nwg-displays
     bolt-launcher
     runelite
+    texliveFull
   ];
   home.pointerCursor.enable = true;
   home.pointerCursor = {

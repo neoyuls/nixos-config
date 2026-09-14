@@ -357,6 +357,7 @@
       ]))
 
     # Dev
+    gh
     pnpm
     micromamba
     grass

@@ -107,7 +107,7 @@
     nixosConfigurations.${local.hostName} = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit local;};
       modules = [
-        stylix.nixosModules.stylix # and this
+        stylix.nixosModules.stylix
         ./system/default.nix
         home-manager.nixosModules.home-manager
         {
@@ -121,12 +121,8 @@
                   '';
               });
             })
-            # python-gnupg 0.5.6's test_no_such_key races gpg-agent: its
-            # remove_all_existing_keys() helper snapshots the homedir with os.walk,
-            # rmtree's the subdirs (gpg-agent notices, exits, unlinks its own sockets),
-            # then os.remove's the now-stale S.gpg-agent.ssh -> FileNotFoundError.
-            # Upstream test bug; it is the only test calling that helper.
-            # Without this, proton-vpn fails to build (via proton-core).
+            # python-gnupg's test_no_such_key races gpg-agent (upstream test bug);
+            # without this proton-vpn fails to build.
             (final: prev: {
               pythonPackagesExtensions =
                 prev.pythonPackagesExtensions

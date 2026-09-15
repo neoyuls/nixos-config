@@ -61,13 +61,8 @@
         "privacy.resistFingerprinting.letterboxing" = false;
         "privacy.resistFingerprinting.exemptedDomains" = "";
         "privacy.fingerprintingProtection" = true;
-        # +AllTargets also enables the RFP-style canvas *blocking* targets. When a
-        # site reads back a canvas outside of a user-input handler (WhatsApp Web
-        # does this to convert pasted images), Firefox silently blocks it and hands
-        # back 8 random pixels tiled across the buffer -> diagonal colour stripes
-        # (dom/canvas/GeneratePlaceholderCanvasData.h). Drop the three blocking
-        # targets; CanvasRandomization still noises every canvas read (Mozilla's
-        # default FPP behaviour), so canvas fingerprinting stays defeated.
+        # +AllTargets includes the canvas *blocking* targets, which break canvas readback
+        # outside user input (striped pasted images on WhatsApp Web); drop those three
         "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme,-CanvasImageExtractionPrompt,-CanvasExtractionBeforeUserInputIsBlocked,-CanvasExtractionFromThirdPartiesIsBlocked";
         "privacy.userContext.enabled" = true;
         "privacy.userContext.ui.enabled" = true;
@@ -173,8 +168,7 @@
         "browser.sessionstore.privacy_level" = 2;
         "browser.helperApps.deleteTempFileOnExit" = true;
 
-        # Sanitize on shutdown, but keep cookies / sessions / offlineApps so
-        # claude.ai, google, whatsapp web, and spotify stay logged in.
+        # sanitize on shutdown but keep cookies/sessions so logins survive
         "privacy.sanitize.sanitizeOnShutdown" = true;
         "privacy.clearOnShutdown.cache" = true;
         "privacy.clearOnShutdown.cookies" = false;

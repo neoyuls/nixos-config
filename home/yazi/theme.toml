@@ -1,7 +1,5 @@
 #:schema https://yazi-rs.github.io/schemas/theme.json
 
-# Lain Rose — derived from /etc/nixos/assets/lain-rose.yaml
-
 [mgr]
 
 syntect_theme   = "~/.config/yazi/lain-rose.tmTheme"

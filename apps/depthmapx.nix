@@ -13,7 +13,7 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "SpaceGroupUCL";
     repo = "depthmapX";
-    rev = "02ceaec015452fda5b3b2a8c66bb06787e7b02a0"; # pinned for reproducibility (was "master")
+    rev = "02ceaec015452fda5b3b2a8c66bb06787e7b02a0";
     hash = "sha256-XoCVxEGUJF6jqnDWRHblQMTIrYq12ZSjOn0V4tTAFas=";
   };
 

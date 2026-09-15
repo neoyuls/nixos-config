@@ -6,10 +6,9 @@
   ...
 }:
 # Theming note: Stylix handles system-wide base16 colorscheme.
-# kitty, ghostty, wezterm, spicetify, vesktop, firefox, and qgis use manually crafted themes
+# ghostty, wezterm, spicetify, vesktop, firefox, and qgis use manually crafted themes
 # that derive from the Stylix base16 palette. If you change the colorscheme,
 # update these files too:
-#   - home/kitty/cyberdream.conf
 #   - home/ghostty/ghostty.nix
 #   - home/wezterm/wezterm.nix
 #   - home/spicetify/spicetify.nix
@@ -22,7 +21,6 @@
     ./mime/mime.nix
     ./noctalia/noctalia.nix
     ./neovim/neovim.nix
-    ./kitty/kitty.nix
     ./ghostty/ghostty.nix
     ./fastfetch/fastfetch.nix
     ./firefox/firefox.nix
@@ -45,14 +43,11 @@
   };
 
   xdg.configFile = {
-    # Templated (not a plain `source`) so @homeDir@ is substituted with the
-    # actual home path -- niri's KDL include/spawn args are not shell-expanded.
+    # templated so @homeDir@ is substituted; niri does not shell-expand include/spawn args
     "niri/config.kdl".text =
       builtins.replaceStrings ["@homeDir@"] [config.home.homeDirectory]
       (builtins.readFile ./niri/config.kdl);
-    "kitty/tabs.conf".source = ./kitty/tabs.conf;
     "yazi/theme.toml".source = ./yazi/theme.toml;
-    "emulsion/cfg.toml".source = ./emulsion/cfg.toml;
     "yazi/lain-rose.tmTheme".source = ../assets/lain-rose.tmTheme;
   };
 
@@ -74,7 +69,6 @@
     kdePackages.okular
     geckodriver
     zathura
-    emulsion
     xwayland-satellite
     bubblewrap
     grim
@@ -94,7 +88,6 @@
     x11.enable = true;
   };
 
-  stylix.targets.kitty.enable = false;
   stylix.targets.ghostty.enable = false;
   stylix.targets.wezterm.enable = false;
   programs.home-manager.enable = true;

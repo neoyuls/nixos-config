@@ -2,8 +2,6 @@ scheme: "rose-lain-mid"
 author: "yuls (derived from lain_wp_1.jpg)"
 
 # base00-03: backgrounds — black → deep rose-wine
-# Selection (base02) bumped just enough to be visible; comments (base03) lightened
-# so they actually read on black instead of disappearing.
 base00: "000000"   # pure black, main bg                                ----
 base01: "1a0c14"   # very dark rose-black, softer bg                    ---
 base02: "36192a"   # dark rose, selection / inactive bg                 --
@@ -16,7 +14,6 @@ base06: "edbac3"   # light rose, light fg                               +++
 base07: "faeaec"   # near-white rose, brightest fg                      ++++
 
 # base08-0F: semantic colors — all anchored to the wallpaper's rose/pink/purple/cream/peach
-# Differentiated by lightness + small hue rotations within the warm arc.
 base08: "e82050"   # hot crimson-rose   (red)
 base09: "f08a5c"   # warm orange-coral  (orange)
 base0A: "f0d090"   # warm gold-cream    (yellow)

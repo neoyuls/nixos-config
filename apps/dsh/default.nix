@@ -7,17 +7,14 @@
   git,
   ripgrep,
 }:
-# DeepSeek Harness publishes @deepseek-ai/dsh as a thin launcher whose ~520
-# transitive packages carry the actual harness, so the pinned dependency
-# manifest beside this file is the whole source. Bumping the version means
-# editing package.json, re-running `npm install --package-lock-only`, and
-# refreshing npmDepsHash with `nix run nixpkgs#prefetch-npm-deps -- package-lock.json`.
+# @deepseek-ai/dsh is a thin launcher; the pinned manifests beside this file are the
+# whole source. To bump: edit package.json, `npm install --package-lock-only`, then
+# refresh npmDepsHash with `nix run nixpkgs#prefetch-npm-deps -- package-lock.json`.
 buildNpmPackage {
   pname = "deepseek-harness";
   version = "0.1.5-rc.1";
 
-  # Only the manifests are inputs; keeping default.nix out of src means editing
-  # this file does not invalidate the fetched dependency tree.
+  # manifests only, so editing this file does not invalidate the dependency tree
   src = lib.fileset.toSource {
     root = ./.;
     fileset = lib.fileset.unions [./package.json ./package-lock.json];
@@ -27,21 +24,14 @@ buildNpmPackage {
 
   nodejs = nodejs_22;
 
-  # Everything arrives prebuilt from the registry; there is no build step, and
-  # pruning would strip packages the profiles resolve at boot.
+  # prebuilt from the registry; pruning would strip packages resolved at boot
   dontNpmBuild = true;
   dontNpmPrune = true;
 
   nativeBuildInputs = [makeWrapper];
 
-  # cordis-plugin-hmr reads node's internal module loader, which only exists
-  # under --expose-internals. node rejects that flag inside NODE_OPTIONS
-  # (process.allowedNodeEnvironmentFlags excludes it), so it has to sit on the
-  # interpreter's own command line or every profile boot dies with
-  # "--expose-internals is required for HMR service".
-  #
-  # pnpm is a runtime dependency: `dsh plugin` forwards to it inside
-  # $DSH_HOME/profiles/<name>, and the bash/search tools shell out to git and rg.
+  # --expose-internals is rejected in NODE_OPTIONS, so it must be on node's own
+  # command line or profile boot fails; dsh shells out to pnpm, git and rg at runtime
   installPhase = ''
     runHook preInstall
 

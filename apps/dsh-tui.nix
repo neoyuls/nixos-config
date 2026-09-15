@@ -2,13 +2,9 @@
   writeShellApplication,
   coreutils,
 }:
-# Runs dsh-TUI under cco, the same bubblewrap sandbox used for the other agents.
-# cco keeps $HOME read-only, so every directory dsh and dsh-TUI persist to has to
-# be granted explicitly; $PWD and ~/.npm are already writable by default.
-#
-# Argument order is load-bearing: cco's --add-dir greedily swallows the non-flag
-# arguments that follow it, so --command and the user's own arguments must come
-# after the last --add-dir or they get parsed as directory paths.
+# dsh-TUI under the cco bubblewrap sandbox ($HOME read-only, persisted dirs granted
+# explicitly). cco's --add-dir swallows the non-flag args after it, so --command
+# and "$@" must come after the last --add-dir.
 writeShellApplication {
   name = "dsh-tui";
   runtimeInputs = [coreutils];
@@ -18,8 +14,7 @@ writeShellApplication {
       exit 1
     fi
 
-    # add_rw_path refuses a directory that does not exist and that refusal aborts
-    # cco, so create each one before granting it. Harmless once they exist.
+    # cco aborts on a nonexistent --add-dir
     for dir in \
       "$HOME/.dsh" \
       "$HOME/.dsh-tui" \

@@ -1,15 +1,13 @@
 {config, ...}: let
   c = config.lib.stylix.colors;
 in {
-  # Night Mapping dark theme as base; lain-rose stylesheet overrides palette colors.
-  # QGIS loads customStyleSheet from [UI] on startup.
+  # Night Mapping dark theme as base; lain-rose stylesheet overrides palette colors
   xdg.dataFile."QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini".text = ''
     [UI]
     UITheme=Night Mapping
     customStyleSheet=${config.home.homeDirectory}/.config/QGIS/lain-rose.qss
   '';
 
-  # Custom QSS layered on top of Night Mapping to apply lain-rose palette
   xdg.configFile."QGIS/lain-rose.qss".text = ''
     QWidget {
       background-color: #${c.base00};

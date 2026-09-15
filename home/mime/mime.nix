@@ -66,7 +66,6 @@
       "application/x-bittorrent" = ["org.qbittorrent.qBittorrent.desktop"];
       "x-scheme-handler/magnet" = ["org.qbittorrent.qBittorrent.desktop"];
 
-      # ONLYOFFICE handles all office formats via a single desktop entry
       # Documents
       "application/vnd.oasis.opendocument.text" = ["onlyoffice-desktopeditors.desktop"];
       "application/msword" = ["onlyoffice-desktopeditors.desktop"];

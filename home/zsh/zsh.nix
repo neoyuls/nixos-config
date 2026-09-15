@@ -15,8 +15,7 @@
       cc42 = "gcc -Wall -Wextra -Werror";
       disk = "df -h | grep nvme";
       oco = "cco opencode";
-      # dsh-tui is the sandboxed wrapper from apps/dsh-tui.nix; dst is the
-      # short form upstream ships, and raw-dsh is the unsandboxed escape hatch.
+      # dst = sandboxed wrapper (apps/dsh-tui.nix), raw-dsh = unsandboxed
       dst = "dsh-tui";
       raw-dsh = "dsh --profile dsh-tui";
       upload-albums = "rclone copy ~/Music/albums proton-drive:Music/albums --transfers=2 --no-update-modtime --protondrive-replace-existing-draft --retries=5 --low-level-retries=10";
@@ -57,6 +56,10 @@
         [[ ''${#REPLY} -gt $(( ''${#1} + 50 )) ]] && REPLY="''${REPLY:0:$(( ''${#1} + 50 ))}"
       }
       ZSH_AUTOSUGGEST_STRATEGY=(truncated_history)
+
+      # Tab / Shift-Tab cycle through zsh-autocomplete's matches instead of inserting the top one
+      bindkey '^I' menu-complete
+      bindkey "$terminfo[kcbt]" reverse-menu-complete
 
       eval "$(micromamba shell hook --shell zsh | sed 's#.*basename.*mamba-wrapped.*#__exe_name=micromamba#')"
     '';

@@ -30,8 +30,7 @@
   boot.loader.systemd-boot.configurationLimit = 10;
 
   boot.kernelModules = ["ntsync"];
-  # int340x_thermal conflicts with manual RAPL power capping (rapl-power-limit service below).
-  # Disabling ACPI thermal zones lets the 45W MMIO RAPL limit govern CPU TDP instead.
+  # int340x_thermal conflicts with the RAPL power cap (rapl-power-limit service below)
   boot.kernelParams = ["thermal.off=1"];
   boot.kernel.sysctl = {
     "vm.swappiness" = 10;
@@ -40,11 +39,10 @@
     "vm.dirty_background_ratio" = 5;
   };
 
-  # Kernel patch: fix MT7961 Bluetooth WMT FUNC_CTRL short response (EINVAL)
   boot.blacklistedKernelModules = ["int340x_thermal"];
 
   # Network
-  networking.hostName = local.hostName; # Define your hostname.
+  networking.hostName = local.hostName;
   networking.networkmanager.enable = true;
 
   # Locale & Time
@@ -79,12 +77,7 @@
     modesetting.enable = true;
     open = false;
     nvidiaSettings = true;
-    # `stable` (595.84) has a use-after-free in nv_dma_release_sgt that corrupted
-    # kernel memory and caused a reboot panic (2026-07-28). Moved to the mature
-    # `production` branch. Alternatives if this doesn't resolve it:
-    #   - config.boot.kernelPackages.nvidiaPackages.beta  (newer; may carry the fix)
-    #   - set `open = true` below (low odds: nv_dma_release_sgt is in the shared OS layer)
-    # Watch for recurrence: journalctl -k -g nv_dma_release_sgt
+    # `stable` (595.84) has a use-after-free in nv_dma_release_sgt that panicked the kernel (2026-07-28)
     package = config.boot.kernelPackages.nvidiaPackages.production;
     powerManagement.enable = true;
     powerManagement.finegrained = true;
@@ -123,17 +116,14 @@
       openssl
     ];
   };
-  # seatd: the upstream unit uses Type=notify wrapped in s6-notify-socket-from-fd,
-  # but the readiness signal never reaches systemd, so seatd is killed at the 90s
-  # start-timeout while niri is already a client -- niri then panics with ENOTCONN
-  # from libseat. Drop the wrapper and run seatd directly as Type=simple.
+  # upstream seatd unit is Type=notify but the readiness signal never reaches systemd,
+  # so it gets killed at the start timeout while niri is already a client
   systemd.services.seatd.serviceConfig = {
     Type = lib.mkForce "simple";
     ExecStart = lib.mkForce "${pkgs.seatd}/bin/seatd -u root -g seat -l debug";
     NotifyAccess = lib.mkForce "none";
   };
 
-  # Capture niri crashes/logs persistently so we can diagnose recurrences.
   services.journald.settings.Journal.Storage = "persistent";
   # xdg-desktop-portal
   xdg.portal = {
@@ -328,7 +318,7 @@
     chroma
     fuzzel
     pdftk
-    brightnessctl # used by niri XF86MonBrightness* keybinds
+    brightnessctl
 
     # Network tools
     proton-vpn
@@ -449,7 +439,6 @@
   networking.firewall = {
     enable = true;
   };
-  # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,

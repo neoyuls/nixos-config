@@ -19,8 +19,8 @@
       # navigation
       "j" = "scroll down";
       "k" = "scroll up";
-      "h" = "navigate previous"; # previous page
-      "l" = "navigate next"; # next page
+      "h" = "navigate previous";
+      "l" = "navigate next";
       # zoom
       "+" = "zoom in";
       "-" = "zoom out";

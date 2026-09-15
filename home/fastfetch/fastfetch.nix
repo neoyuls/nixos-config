@@ -2,8 +2,8 @@
   config = builtins.toJSON {
     logo = {
       padding = {
-        top = 5;
-        bottom = 5;
+        top = 2;
+        bottom = 2;
         left = 2;
         right = 2;
       };

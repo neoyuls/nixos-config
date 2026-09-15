@@ -8,7 +8,7 @@
       window-padding-y = 10;
       window-padding-balance = true;
       background-opacity = 0.85;
-      background-blur-radius = 20;
+      background-blur-radius = 50;
       scrollback-limit = 10000;
       confirm-close-surface = false;
       mouse-hide-while-typing = true;

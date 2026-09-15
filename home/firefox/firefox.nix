@@ -61,7 +61,14 @@
         "privacy.resistFingerprinting.letterboxing" = false;
         "privacy.resistFingerprinting.exemptedDomains" = "";
         "privacy.fingerprintingProtection" = true;
-        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+        # +AllTargets also enables the RFP-style canvas *blocking* targets. When a
+        # site reads back a canvas outside of a user-input handler (WhatsApp Web
+        # does this to convert pasted images), Firefox silently blocks it and hands
+        # back 8 random pixels tiled across the buffer -> diagonal colour stripes
+        # (dom/canvas/GeneratePlaceholderCanvasData.h). Drop the three blocking
+        # targets; CanvasRandomization still noises every canvas read (Mozilla's
+        # default FPP behaviour), so canvas fingerprinting stays defeated.
+        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme,-CanvasImageExtractionPrompt,-CanvasExtractionBeforeUserInputIsBlocked,-CanvasExtractionFromThirdPartiesIsBlocked";
         "privacy.userContext.enabled" = true;
         "privacy.userContext.ui.enabled" = true;
 

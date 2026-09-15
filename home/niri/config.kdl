@@ -173,12 +173,12 @@ binds {
 	Mod+S            { show-hotkey-overlay; }
 Mod+D            { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
 Mod+Shift+B      { spawn "noctalia" "msg" "bar-toggle"; }
-	Mod+Return       { spawn "ghostty"; }
+	Mod+Return       { spawn "wezterm"; }
 	Mod+B            { spawn "firefox"; }
-	Mod+E            { spawn "ghostty" "-e" "sudo" "yazi"; }
-	Mod+M            { spawn "ghostty" "-e" "termusic"; }
-	Mod+T            { spawn "ghostty" "-e" "youtube-tui"; }
-	Mod+N            { spawn "ghostty" "--working-directory=@homeDir@/nixos-config"; }
+	Mod+E            { spawn "wezterm" "start" "--" "sudo" "yazi"; }
+	Mod+M            { spawn "wezterm" "start" "--" "termusic"; }
+	Mod+T            { spawn "wezterm" "start" "--" "youtube-tui"; }
+	Mod+N            { spawn "wezterm" "start" "--cwd" "@homeDir@/nixos-config"; }
 
 	Mod+Q            { close-window; }
 	Mod+F            { maximize-column; }

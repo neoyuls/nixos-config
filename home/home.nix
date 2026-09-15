@@ -6,11 +6,12 @@
   ...
 }:
 # Theming note: Stylix handles system-wide base16 colorscheme.
-# kitty, ghostty, spicetify, vesktop, firefox, and qgis use manually crafted themes
+# kitty, ghostty, wezterm, spicetify, vesktop, firefox, and qgis use manually crafted themes
 # that derive from the Stylix base16 palette. If you change the colorscheme,
 # update these files too:
 #   - home/kitty/cyberdream.conf
 #   - home/ghostty/ghostty.nix
+#   - home/wezterm/wezterm.nix
 #   - home/spicetify/spicetify.nix
 #   - home/vesktop/themes/lain-rose.css
 #   - home/firefox/userContent.css
@@ -29,6 +30,7 @@
     ./spicetify/spicetify.nix
     ./zsh/zsh.nix
     ./qgis/qgis.nix
+    ./wezterm/wezterm.nix
     ./zathura/zathura.nix
   ];
 
@@ -94,6 +96,7 @@
 
   stylix.targets.kitty.enable = false;
   stylix.targets.ghostty.enable = false;
+  stylix.targets.wezterm.enable = false;
   programs.home-manager.enable = true;
 
   programs.git = {

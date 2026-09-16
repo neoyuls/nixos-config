@@ -85,6 +85,15 @@ in {
           (bind "t" "CTRL" {SpawnTab = "CurrentPaneDomain";})
           (bind "w" "CTRL" {CloseCurrentPane.confirm = false;})
 
+          # Terminals can't tell Ctrl+Backspace from Backspace, so send ^W
+          # instead: backward-kill-word in zsh/readline, i_CTRL-W in neovim.
+          (bind "Backspace" "CTRL" {
+            SendKey = {
+              key = "w";
+              mods = "CTRL";
+            };
+          })
+
           (bind "h" "CTRL" {ActivatePaneDirection = "Left";})
           (bind "l" "CTRL" {ActivatePaneDirection = "Right";})
           (bind "k" "CTRL" {ActivatePaneDirection = "Up";})
@@ -125,6 +134,79 @@ in {
           { Text = right_cap .. " " },
         }
       end)
+
+      -- Remember the working directory of the focused pane and open new
+      -- windows there (what ghostty's window-inherit-working-directory did).
+      -- Tabs/splits already inherit it via CurrentPaneDomain. Every `wezterm`
+      -- launch re-evaluates this file, so the value is used without a reload.
+      local last_cwd_file = (os.getenv("XDG_STATE_HOME") or wezterm.home_dir .. "/.local/state")
+        .. "/wezterm/last_cwd"
+
+      local function read_last_cwd()
+        local f = io.open(last_cwd_file, "r")
+        if not f then
+          return nil
+        end
+        local dir = f:read("*l")
+        f:close()
+        return dir
+      end
+
+      local function write_last_cwd(dir)
+        local tmp = last_cwd_file .. ".tmp"
+        local f = io.open(tmp, "w")
+        if not f then
+          wezterm.run_child_process({ "mkdir", "-p", last_cwd_file:match("(.*)/") })
+          f = io.open(tmp, "w")
+        end
+        if f then
+          f:write(dir, "\n")
+          f:close()
+          os.rename(tmp, last_cwd_file)
+        end
+      end
+
+      local function is_dir(path)
+        local f = io.open(path .. "/", "r")
+        if not f then
+          return false
+        end
+        f:close()
+        return true
+      end
+
+      -- cwd of the pane's foreground process (OSC 7 or /proc); skip remote (ssh) ones
+      local function local_cwd(pane)
+        local url = pane:get_current_working_dir()
+        if not url or not url.file_path or url.file_path == "" then
+          return nil
+        end
+        local host = url.host
+        if host and host ~= "" and host ~= "localhost" and host ~= wezterm.hostname() then
+          return nil
+        end
+        return url.file_path
+      end
+
+      wezterm.on("update-status", function(window, pane)
+        if not window:is_focused() then
+          return
+        end
+        local cwd = local_cwd(pane)
+        if cwd and cwd ~= read_last_cwd() then
+          write_last_cwd(cwd)
+        end
+      end)
+
+      local extra = {}
+      local last_cwd = read_last_cwd()
+      if last_cwd and last_cwd ~= "" and is_dir(last_cwd) then
+        -- fresh GUI processes and `wezterm start -- prog`
+        extra.default_cwd = last_cwd
+        -- plain `wezterm` (Mod+Return) spawning a window into the running GUI
+        extra.default_gui_startup_args = { "start", "--cwd", last_cwd }
+      end
+      return extra
     '';
   };
 }

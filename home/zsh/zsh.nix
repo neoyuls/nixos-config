@@ -12,7 +12,7 @@
       rebuild = "sudo nixos-rebuild switch --flake 'path:${config.home.homeDirectory}/nixos-config#nixyuls' --impure";
       update = "sudo nix flake update --flake ${config.home.homeDirectory}/nixos-config";
       optimize = "nix-collect-garbage && nix-store --optimize";
-      cc42 = "gcc -Wall -Wextra -Werror";
+      cc42 = "gcc -fsanitize=address,undefined -Wall -Wextra -Werror";
       disk = "df -h | grep nvme";
       oco = "cco opencode";
       # dst = sandboxed wrapper (apps/dsh-tui.nix), raw-dsh = unsandboxed

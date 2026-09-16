@@ -11,6 +11,12 @@
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.tabs.inTitlebar" = 1;
 
+        # middle-click drag to autoscroll; paste is disabled since it would
+        # take over middle-click in the content area
+        "general.autoScroll" = true;
+        "middlemouse.paste" = false;
+        "middlemouse.contentLoadURL" = false;
+
         "ui.systemUsesDarkTheme" = 1;
         "browser.theme.toolbar-theme" = 0;
         "browser.theme.content-theme" = 0;

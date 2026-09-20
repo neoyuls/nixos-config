@@ -11,7 +11,7 @@
       theme.enable = lib.mkForce false;
 
       globals = {
-        user42 = local.gitName;
+        user42 = local.user42;
         mail42 = local.mail42;
         mapleader = " ";
       };

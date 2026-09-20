@@ -322,6 +322,7 @@
 
     # Network tools
     proton-vpn
+    searxng
     networkmanager-openvpn
     rclone
     thunderbird
@@ -438,6 +439,14 @@
   # Firewall
   networking.firewall = {
     enable = true;
+
+    # LocalSend: 53317/tcp+udp is required for BOTH discovery and transfer.
+    # Discovery is mDNS/multicast on the LAN (NOT bluetooth); the app
+    # registers peers over http on 53317 and also uses the legacy
+    # multicast group 224.0.0.167:53317. Without this, the phone sees
+    # nothing even though the daemon is listening locally.
+    allowedTCPPorts = [ 53317 ];
+    allowedUDPPorts = [ 53317 ];
   };
   services.libinput.enable = true;
 

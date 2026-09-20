@@ -63,6 +63,7 @@
   '';
 
   home.packages = with pkgs; [
+    pi-coding-agent
     (pkgs.callPackage ../apps/depthmapx.nix {})
     # element-desktop
     localsend
@@ -78,6 +79,7 @@
     bolt-launcher
     runelite
     texliveFull
+    ryubing
   ];
   home.pointerCursor.enable = true;
   home.pointerCursor = {

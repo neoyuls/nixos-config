@@ -66,6 +66,7 @@
     pi-coding-agent
     (pkgs.callPackage ../apps/depthmapx.nix {})
     # element-desktop
+    bk
     localsend
     kdePackages.okular
     geckodriver

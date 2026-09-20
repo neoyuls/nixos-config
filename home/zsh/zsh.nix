@@ -8,14 +8,16 @@
     enableCompletion = false;
     shellAliases = {
       vim = "nvim";
-      svim = "sudo nvim";
       rebuild = "sudo nixos-rebuild switch --flake 'path:${config.home.homeDirectory}/nixos-config#nixyuls' --impure";
       update = "sudo nix flake update --flake ${config.home.homeDirectory}/nixos-config";
       optimize = "nix-collect-garbage && nix-store --optimize";
       cc42 = "gcc -fsanitize=address,undefined -Wall -Wextra -Werror";
       disk = "df -h | grep nvme";
-      oco = "cco opencode";
+
+      # always run agents in a sandbox
       # dst = sandboxed wrapper (apps/dsh-tui.nix), raw-dsh = unsandboxed
+
+      oco = "cco opencode";
       dst = "dsh-tui";
       raw-dsh = "dsh --profile dsh-tui";
       upload-albums = "rclone copy ~/Music/albums proton-drive:Music/albums --transfers=2 --no-update-modtime --protondrive-replace-existing-draft --retries=5 --low-level-retries=10";

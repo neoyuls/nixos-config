@@ -214,6 +214,12 @@ let
     })
     vendored);
 in {
+  # pi-mesh-extension stores its state (session identities, ledger, transcripts,
+  # policy) in <cwd>/.mesh unless MESH_STATE_DIR overrides it. Point it at one
+  # global dir so project directories stay clean -- this also makes the mesh
+  # alias stable across projects instead of per-directory.
+  home.sessionVariables.MESH_STATE_DIR = "${config.home.homeDirectory}/.local/state/mesh";
+
   # ~/.pi/agent is not an XDG directory, so this is home.file, not xdg.configFile.
   # A store symlink is fine for the theme: loadThemesFromDir() stats symlinked
   # entries when scanning ~/.pi/agent/themes/.

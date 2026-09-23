@@ -56,7 +56,7 @@
         radius = 12;
         start = ["launcher" "clock" "sysmon" "active_window" "media"];
         center = ["workspaces"];
-        end = ["network" "battery" "bluetooth" "tray" "notifications" "volume" "control-center"];
+        end = ["network" "battery" "bluetooth" "tray" "notifications" "volume" "screen-lock" "control-center"];
       };
 
       notification.background_opacity = 1.0;
@@ -75,6 +75,14 @@
         "control-center" = {
           custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
           custom_image_colorize = true;
+        };
+        # 1-click lock: custom_button type, left click fires the `session lock`
+        # IPC verb, which raises noctalia's own lock screen
+        "screen-lock" = {
+          type = "custom_button";
+          glyph = "lock";
+          tooltip = "Lock screen";
+          actions = {left = "session lock";};
         };
       };
     };

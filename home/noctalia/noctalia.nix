@@ -43,7 +43,7 @@
       wallpaper = {
         enabled = true;
         directory = "~/Pictures/wallpapers";
-        default.path = "~/Pictures/wallpapers/lain_wp_1.jpg";
+        default.path = "~/Pictures/wallpapers/miku-stars.jpg";
       };
 
       bar.main = {
@@ -79,51 +79,51 @@
       };
     };
 
-    # lain-rose base16 palette mapped to Material Design color roles
+    # miku-stars base16 palette mapped to Material Design color roles
     customPalettes.Mine = {
       dark = {
-        mPrimary = "#a060d8"; # base0D lavender-violet
-        mOnPrimary = "#000000"; # base00
-        mSecondary = "#e070c0"; # base0E pink-magenta
-        mOnSecondary = "#000000"; # base00
-        mTertiary = "#f49ab0"; # base0C bright rose-pink
-        mOnTertiary = "#000000"; # base00
-        mError = "#e82050"; # base08 hot crimson
-        mOnError = "#000000"; # base00
-        mSurface = "#000000"; # base00 pure black
-        mOnSurface = "#d488a0"; # base05 mid rose
-        mSurfaceVariant = "#1a0c14"; # base01 very dark rose
-        mOnSurfaceVariant = "#b87080"; # base04 dusty rose
-        mOutline = "#965270"; # base03 readable wine
-        mShadow = "#000000"; # base00
-        mHover = "#f49ab0"; # base0C bright rose-pink
-        mOnHover = "#000000"; # base00
+        mPrimary = "#6de3e5"; # base0C Miku cyan
+        mOnPrimary = "#0b0d13"; # base00
+        mSecondary = "#5aa9f0"; # base0D starry blue
+        mOnSecondary = "#0b0d13"; # base00
+        mTertiary = "#b18bd8"; # base0E swirl violet
+        mOnTertiary = "#0b0d13"; # base00
+        mError = "#ff4f8b"; # base08 Miku pink
+        mOnError = "#0b0d13"; # base00
+        mSurface = "#0b0d13"; # base00 near-black navy
+        mOnSurface = "#cfe3f7"; # base06 light fg
+        mSurfaceVariant = "#141b2b"; # base01 theme toolbar
+        mOnSurfaceVariant = "#a8c8e8"; # base05 mid fg
+        mOutline = "#3f6699"; # base03 starry blue
+        mShadow = "#0b0d13"; # base00
+        mHover = "#6de3e5"; # base0C Miku cyan
+        mOnHover = "#0b0d13"; # base00
         terminal = {
-          foreground = "#d488a0"; # base05
-          background = "#000000"; # base00
-          selectionFg = "#000000"; # base00
-          selectionBg = "#e070c0"; # base0E
-          cursor = "#d488a0"; # base05
-          cursorText = "#000000"; # base00
+          foreground = "#cfe3f7"; # base06
+          background = "#0b0d13"; # base00
+          selectionFg = "#0b0d13"; # base00
+          selectionBg = "#5aa9f0"; # base0D
+          cursor = "#6de3e5"; # base0C
+          cursorText = "#0b0d13"; # base00
           normal = {
-            black = "#000000"; # base00
-            red = "#e82050"; # base08
-            green = "#b05c82"; # base0B
-            yellow = "#f0d090"; # base0A
-            blue = "#a060d8"; # base0D
-            magenta = "#e070c0"; # base0E
-            cyan = "#f49ab0"; # base0C
-            white = "#d488a0"; # base05
+            black = "#0b0d13"; # base00
+            red = "#ff4f8b"; # base08
+            green = "#6fd6a8"; # base0B
+            yellow = "#f7d774"; # base0A
+            blue = "#5aa9f0"; # base0D
+            magenta = "#b18bd8"; # base0E
+            cyan = "#6de3e5"; # base0C
+            white = "#a8c8e8"; # base05
           };
           bright = {
-            black = "#a85e74"; # muted rose, readable bright-black
-            red = "#e82050"; # base08
-            green = "#b05c82"; # base0B
-            yellow = "#f0d090"; # base0A
-            blue = "#a060d8"; # base0D
-            magenta = "#e070c0"; # base0E
-            cyan = "#f49ab0"; # base0C
-            white = "#faeaec"; # base07
+            black = "#507bb0"; # base04, readable bright-black
+            red = "#ff4f8b"; # base08
+            green = "#6fd6a8"; # base0B
+            yellow = "#f7d774"; # base0A
+            blue = "#5aa9f0"; # base0D
+            magenta = "#b18bd8"; # base0E
+            cyan = "#6de3e5"; # base0C
+            white = "#eef6ff"; # base07
           };
         };
       };

@@ -1,0 +1,30 @@
+scheme: "miku-stars"
+author: "yuls (derived from the Sleeping Miku Animated Firefox theme + miku-stars.jpg)"
+
+# Palettes sources:
+#   - Firefox theme "Sleeping Miku Animated" (slubaru):
+#       frame #0b0d13, toolbar #151824, accent/tab-line/toolbar-field-text #6de3e5
+#   - assets/wallpapers/miku-stars.jpg (Hatsune Miku as Van Gogh's Starry Night):
+#       deep blues #022879/#1561a4, star golds #f7ba05/#e0d699, near-black #010101
+
+# base00-03: backgrounds — near-black navy -> starry blue
+base00: "0b0d13"   # theme frame, main bg                          ----
+base01: "141b2b"   # theme toolbar, panels                          ---
+base02: "1e2c47"   # selection / raised surfaces                    --
+base03: "3f6699"   # starry blue, comments/borders (~3.4:1 on base00) -
+
+# base04-07: foregrounds — cool blue-white ramp
+base04: "507bb0"   # dim fg                                        +
+base05: "a8c8e8"   # default fg                                    ++
+base06: "cfe3f7"   # light fg                                      +++
+base07: "eef6ff"   # near-white, brightest fg                      ++++
+
+# base08-0F: semantic colors — anchored to the theme art and wallpaper
+base08: "ff4f8b"   # Miku pink          (red)
+base09: "f2a35c"   # warm star glow     (orange)
+base0A: "f7d774"   # star gold          (yellow)
+base0B: "6fd6a8"   # mint green         (green)
+base0C: "6de3e5"   # Miku cyan          (aqua/cyan) — primary accent
+base0D: "5aa9f0"   # starry blue        (blue)
+base0E: "b18bd8"   # swirl violet       (purple)
+base0F: "9a8fa8"   # muted mauve        (brown)

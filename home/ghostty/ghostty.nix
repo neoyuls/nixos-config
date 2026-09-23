@@ -13,30 +13,30 @@
       confirm-close-surface = false;
       mouse-hide-while-typing = true;
 
-      background = "#000000";
-      foreground = "#edbac3";
-      cursor-color = "#e070c0";
-      cursor-text = "#000000";
-      selection-background = "#36192a";
-      selection-foreground = "#edbac3";
+      background = "#0b0d13";
+      foreground = "#cfe3f7";
+      cursor-color = "#6de3e5";
+      cursor-text = "#0b0d13";
+      selection-background = "#1e2c47";
+      selection-foreground = "#cfe3f7";
 
       palette = [
-        "0=#1a0c14"
-        "1=#e82050"
-        "2=#b05c82"
-        "3=#f0d090"
-        "4=#a060d8"
-        "5=#e070c0"
-        "6=#f49ab0"
-        "7=#c87888"
-        "8=#a85e74"
-        "9=#e82050"
-        "10=#b05c82"
-        "11=#f0d090"
-        "12=#a060d8"
-        "13=#e070c0"
-        "14=#f49ab0"
-        "15=#faeaec"
+        "0=#0b0d13"
+        "1=#ff4f8b"
+        "2=#6fd6a8"
+        "3=#f7d774"
+        "4=#5aa9f0"
+        "5=#b18bd8"
+        "6=#6de3e5"
+        "7=#a8c8e8"
+        "8=#507bb0"
+        "9=#ff4f8b"
+        "10=#6fd6a8"
+        "11=#f7d774"
+        "12=#5aa9f0"
+        "13=#b18bd8"
+        "14=#6de3e5"
+        "15=#eef6ff"
       ];
 
       keybind = [

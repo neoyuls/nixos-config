@@ -1,14 +1,14 @@
 {config, ...}: let
   c = config.lib.stylix.colors;
 in {
-  # Night Mapping dark theme as base; lain-rose stylesheet overrides palette colors
+  # Night Mapping dark theme as base; miku-stars stylesheet overrides palette colors
   xdg.dataFile."QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini".text = ''
     [UI]
     UITheme=Night Mapping
-    customStyleSheet=${config.home.homeDirectory}/.config/QGIS/lain-rose.qss
+    customStyleSheet=${config.home.homeDirectory}/.config/QGIS/miku-stars.qss
   '';
 
-  xdg.configFile."QGIS/lain-rose.qss".text = ''
+  xdg.configFile."QGIS/miku-stars.qss".text = ''
     QWidget {
       background-color: #${c.base00};
       color: #${c.base06};

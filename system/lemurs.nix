@@ -12,9 +12,9 @@
       background = {
         show_background = true;
         style = {
-          color = "#000000";
+          color = "#0b0d13";
           show_border = true;
-          border_color = "#7a4462";
+          border_color = "#3f6699";
         };
       };
 
@@ -23,14 +23,14 @@
         base_entries = [
           {
             hint = "Shutdown";
-            hint_color = "#a85e74";
+            hint_color = "#507bb0";
             hint_modifiers = "";
             key = "F1";
             cmd = "systemctl poweroff -l";
           }
           {
             hint = "Reboot";
-            hint_color = "#a85e74";
+            hint_color = "#507bb0";
             hint_modifiers = "";
             key = "F2";
             cmd = "systemctl reboot -l";
@@ -42,37 +42,37 @@
       environment_switcher = {
         switcher_visibility = "visible";
         toggle_hint = "Switcher %key%";
-        toggle_hint_color = "#a85e74";
+        toggle_hint_color = "#507bb0";
         toggle_hint_modifiers = "";
         include_tty_shell = false;
         remember = true;
 
         show_movers = true;
-        mover_color = "#a85e74";
+        mover_color = "#507bb0";
         mover_modifiers = "";
-        mover_color_focused = "#fc9eb6";
+        mover_color_focused = "#8feff0";
         mover_modifiers_focused = "bold";
         left_mover = "<";
         right_mover = ">";
         mover_margin = 1;
 
         show_neighbours = true;
-        neighbour_color = "#a85e74";
+        neighbour_color = "#507bb0";
         neighbour_modifiers = "";
-        neighbour_color_focused = "#fc9eb6";
+        neighbour_color_focused = "#8feff0";
         neighbour_modifiers_focused = "";
         neighbour_margin = 1;
 
-        selected_color = "#d878a0";
+        selected_color = "#6de3e5";
         selected_modifiers = "underlined";
-        selected_color_focused = "#fc9eb6";
+        selected_color_focused = "#8feff0";
         selected_modifiers_focused = "bold";
 
         max_display_length = 8;
         no_envs_text = "No environments...";
-        no_envs_color = "#f4d8de";
+        no_envs_color = "#cfe3f7";
         no_envs_modifiers = "";
-        no_envs_color_focused = "#fc9eb6";
+        no_envs_color_focused = "#8feff0";
         no_envs_modifiers_focused = "";
       };
 
@@ -81,13 +81,13 @@
         style = {
           show_title = true;
           title = "Login";
-          title_color = "#f4d8de";
-          content_color = "#f4d8de";
-          title_color_focused = "#fc9eb6";
-          content_color_focused = "#fc9eb6";
+          title_color = "#cfe3f7";
+          content_color = "#cfe3f7";
+          title_color_focused = "#8feff0";
+          content_color_focused = "#8feff0";
           show_border = true;
-          border_color = "#7a4462";
-          border_color_focused = "#d878a0";
+          border_color = "#3f6699";
+          border_color_focused = "#6de3e5";
           use_max_width = true;
           max_width = 48;
         };
@@ -98,13 +98,13 @@
         style = {
           show_title = true;
           title = "Password";
-          title_color = "#f4d8de";
-          content_color = "#f4d8de";
-          title_color_focused = "#fc9eb6";
-          content_color_focused = "#fc9eb6";
+          title_color = "#cfe3f7";
+          content_color = "#cfe3f7";
+          title_color_focused = "#8feff0";
+          content_color_focused = "#8feff0";
           show_border = true;
-          border_color = "#7a4462";
-          border_color_focused = "#d878a0";
+          border_color = "#3f6699";
+          border_color_focused = "#6de3e5";
           use_max_width = true;
           max_width = 48;
         };

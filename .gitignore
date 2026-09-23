@@ -20,6 +20,10 @@ secrets/
 *.pem
 *.key
 .env
+.env.local
+
+# pi mesh extension runtime state (ledger + per-session identities)
+.mesh/
 
 # editor/backup cruft
 *.bak

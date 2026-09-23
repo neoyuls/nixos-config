@@ -25,6 +25,12 @@
       url = "github:marlonrichert/z-async/5370537de80670b4a97e49cd253d15067709c0a6";
       flake = false;
     };
+    # amosblomqvist/pi-config: pi extensions + skills. Not a flake, and pinned by
+    # flake.lock so the vendored resources are reproducible.
+    pi-config = {
+      url = "github:amosblomqvist/pi-config";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {

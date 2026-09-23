@@ -1,13 +1,13 @@
 {lib, ...}: let
-  bg = "#000000";
-  fg = "#edbac3";
-  cursor = "#e070c0";
-  selection = "#36192a";
+  bg = "#0b0d13";
+  fg = "#cfe3f7";
+  cursor = "#6de3e5";
+  selection = "#1e2c47";
   tab = {
-    activeBg = "#b840a0";
-    activeFg = "#000000";
-    inactiveBg = "#30131f";
-    inactiveFg = "#e8a0a8";
+    activeBg = "#5aa9f0";
+    activeFg = "#0b0d13";
+    inactiveBg = "#141b2b";
+    inactiveFg = "#a8c8e8";
   };
 
   bind = key: mods: action: {inherit key mods action;};
@@ -39,8 +39,8 @@ in {
         cursor_fg = bg;
         selection_bg = selection;
         selection_fg = fg;
-        ansi = ["#1a0c14" "#e82050" "#b05c82" "#f0d090" "#a060d8" "#e070c0" "#f49ab0" "#c87888"];
-        brights = ["#a85e74" "#e82050" "#b05c82" "#f0d090" "#a060d8" "#e070c0" "#f49ab0" "#faeaec"];
+        ansi = ["#0b0d13" "#ff4f8b" "#6fd6a8" "#f7d774" "#5aa9f0" "#b18bd8" "#6de3e5" "#a8c8e8"];
+        brights = ["#507bb0" "#ff4f8b" "#6fd6a8" "#f7d774" "#5aa9f0" "#b18bd8" "#6de3e5" "#eef6ff"];
         split = selection;
         tab_bar = {
           background = bg;

@@ -1,20 +1,28 @@
 {
   config,
   pkgs,
-  lib,
   local,
   ...
 }:
-# Theming note: Stylix handles system-wide base16 colorscheme.
-# ghostty, wezterm, spicetify, vesktop, firefox, and qgis use manually crafted themes
-# that derive from the Stylix base16 palette. If you change the colorscheme,
-# update these files too:
+# Theming note: Stylix handles the system-wide base16 colorscheme
+# (assets/miku-stars.yaml, derived from the Sleeping Miku Animated Firefox
+# theme and assets/wallpapers/miku-stars.jpg).
+# Several programs use manually crafted themes instead of the Stylix target,
+# all derived from that base16 palette. If you change the colorscheme, update
+# these files too:
 #   - home/ghostty/ghostty.nix
 #   - home/wezterm/wezterm.nix
 #   - home/spicetify/spicetify.nix
-#   - home/vesktop/themes/lain-rose.css
-#   - home/firefox/userContent.css
-#   - home/qgis/qgis.qss
+#   - home/vesktop/vesktop.nix
+#   - home/firefox/firefox.nix
+#   - home/qgis/qgis.nix
+#   - home/fastfetch/fastfetch.nix
+#   - home/neovim/neovim.nix (cyberdream color override)
+#   - home/noctalia/noctalia.nix (customPalettes.Mine)
+#   - home/yazi/theme.toml (assets/miku-stars.tmTheme)
+#   - home/niri/config.kdl + the niri/colors.kdl below
+#   - system/lemurs.nix
+# (home/pi/pi.nix regenerates itself from config.lib.stylix.colors)
 {
   imports = [
     # ./element/element.nix
@@ -28,6 +36,7 @@
     ./spicetify/spicetify.nix
     ./zsh/zsh.nix
     ./qgis/qgis.nix
+    ./pi/pi.nix
     ./wezterm/wezterm.nix
     ./zathura/zathura.nix
   ];
@@ -47,20 +56,21 @@
     "niri/config.kdl".text =
       builtins.replaceStrings ["@homeDir@"] [config.home.homeDirectory]
       (builtins.readFile ./niri/config.kdl);
+    # generated from the palette so the focus-ring colours always track the
+    # scheme (the config.kdl borders below are updated by hand)
+    "niri/colors.kdl".text = ''
+      layout {
+          focus-ring {
+              active-color "#${config.lib.stylix.colors.base0C}"
+              inactive-color "#${config.lib.stylix.colors.base02}"
+          }
+      }
+    '';
     "yazi/theme.toml".source = ./yazi/theme.toml;
-    "yazi/lain-rose.tmTheme".source = ../assets/lain-rose.tmTheme;
+    "yazi/miku-stars.tmTheme".source = ../assets/miku-stars.tmTheme;
   };
 
   home.file."Pictures/wallpapers".source = ../assets/wallpapers;
-
-  home.activation.createNiriColors = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    COLORS_FILE="$HOME/.config/niri/colors.kdl"
-    if [[ ! -f "$COLORS_FILE" ]]; then
-        mkdir -p "$HOME/.config/niri"
-        printf 'layout {\n    focus-ring {\n        active-color "#d878a0"\n        inactive-color "#4a2638"\n    }\n}\n' \
-            > "$COLORS_FILE"
-    fi
-  '';
 
   home.packages = with pkgs; [
     pi-coding-agent

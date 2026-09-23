@@ -20,8 +20,8 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    base16Scheme = ../assets/lain-rose.yaml;
-    image = ../assets/wallpapers/lain_wp_1.jpg; # required by stylix
+    base16Scheme = ../assets/miku-stars.yaml;
+    image = ../assets/wallpapers/miku-stars.jpg; # required by stylix
     targets.kmscon.enable = false;
   };
   # BOOTLOADER
@@ -322,7 +322,6 @@
 
     # Network tools
     proton-vpn
-    searxng
     networkmanager-openvpn
     rclone
     thunderbird
@@ -428,6 +427,52 @@
     nssmdns4 = true;
     openFirewall = true;
   };
+
+  # SearXNG: local meta search engine on 127.0.0.1:8888
+  services.searx = {
+    enable = true;
+    # the module envsubsts $SEARXNG_SECRET into /run/searx/settings.yml, so the
+    # key itself stays out of the world-readable nix store
+    environmentFile = "/var/lib/searxng/searxng.env";
+    settings = {
+      use_default_settings = true;
+      general.instance_name = "searxng";
+      server = {
+        port = 8888;
+        bind_address = "127.0.0.1";
+        secret_key = "$SEARXNG_SECRET";
+        limiter = false; # local single-user instance: no valkey/redis needed
+        public_instance = false;
+      };
+    };
+    # persistent favicon cache in /var/cache/searx (CacheDirectory= of the unit)
+    faviconsSettings = {
+      favicons = {
+        cfg_schema = 1;
+        cache = {
+          db_url = "/var/cache/searx/faviconcache.db";
+          HOLD_TIME = 5184000; # 60 days
+          LIMIT_TOTAL_BYTES = 1073741824; # 1 GiB
+          BLOB_MAX_BYTES = 40960;
+          MAINTENANCE_MODE = "auto";
+          MAINTENANCE_PERIOD = 600;
+        };
+      };
+    };
+  };
+
+  # services.searx.environmentFile has to exist before searx-init runs, so mint
+  # the key once on first activation; a rebuild never rotates it.
+  system.activationScripts.searxngSecret.text = ''
+    if [ ! -s /var/lib/searxng/searxng.env ]; then
+      ${pkgs.coreutils}/bin/install -d -m 0700 /var/lib/searxng
+      (
+        umask 077
+        secret="$(${pkgs.coreutils}/bin/head -c 32 /dev/urandom | ${pkgs.coreutils}/bin/base64 -w0)"
+        printf 'SEARXNG_SECRET=%s\n' "$secret" > /var/lib/searxng/searxng.env
+      )
+    fi
+  '';
 
   # ZRAM as swap
   zramSwap = {

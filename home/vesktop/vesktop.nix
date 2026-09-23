@@ -13,6 +13,15 @@ in {
       openLinksWithElectron = false;
       arRPC = false;
       transparent = true;
+      # Electron on Wayland + the hybrid NVIDIA/Intel setup here kills its own GPU
+      # process, which disposes the render frame; the next main-process timer then
+      # throws "Render frame was disposed before WebFrameMain could be accessed".
+      # Equivalent to --disable-gpu (same branch in VencordDesktopMain) and the
+      # upstream-reported workaround for this stack on NVIDIA/Wayland.
+      # NOTE: must be set here, not in the GUI -- HM writes settings.json as a
+      # read-only store symlink, so Vesktop's own toggle cannot persist.
+      # Trade-off: Discord renders on the CPU (higher CPU use, weaker screenshare).
+      hardwareAcceleration = false;
     };
 
     vencord.settings = {
@@ -39,7 +48,7 @@ in {
     };
 
     vencord.extraQuickCss = ''
-      /* Lain Rose — derived from Stylix base16 palette */
+      /* Miku Stars — derived from the Stylix base16 palette */
 
       .theme-dark,
       .theme-darker,

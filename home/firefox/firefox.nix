@@ -1,5 +1,9 @@
-{...}: {
+{pkgs, ...}: {
   stylix.targets.firefox.profileNames = ["yuls"];
+
+  # "Sleeping Miku Animated" (slubaru, AMO) vendored so the theme survives a
+  # fresh profile. The AMO id is stable; activeThemeID below selects it.
+  home.file.".mozilla/firefox/yuls/extensions/sleeping-miku@example.com.xpi".source = ./sleeping-miku.xpi;
 
   programs.firefox = {
     enable = true;
@@ -8,7 +12,6 @@
       id = 0;
       isDefault = true;
       settings = {
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.tabs.inTitlebar" = 1;
 
         # middle-click drag to autoscroll; paste is disabled since it would
@@ -23,7 +26,11 @@
         "browser.in-content.dark-mode" = true;
         "layout.css.prefers-color-scheme.content-override" = 0;
         "devtools.theme" = "dark";
-        "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+        # the Sleeping Miku Animated theme (vendored above); without this the
+        # generated user.js keeps forcing compact-dark back on every restart
+        "extensions.activeThemeID" = "sleeping-miku@example.com";
+        # enable profile-scope sideloaded add-ons (the theme xpi placed by HM)
+        "extensions.autoDisableScopes" = 0;
         "extensions.lastAppVersion" = "";
         "widget.content.allow-gtk-dark-theme" = true;
         "widget.content.gtk-high-contrast.enabled" = false;
@@ -113,6 +120,10 @@
         "signon.formlessCapture.enabled" = false;
         "signon.rememberSignons" = false;
 
+        # search: local SearXNG is the only engine (see the search block below).
+        # Suggestions stay off; "keyword.enabled" is what makes non-URL input in
+        # the address bar fall through to the default engine.
+        "keyword.enabled" = true;
         "browser.search.suggest.enabled" = false;
         "browser.urlbar.suggest.searches" = false;
         "browser.urlbar.speculativeConnect.enabled" = false;
@@ -227,143 +238,26 @@
 
         "dom.security.sanitizer.enabled" = true;
       };
-      userChrome = ''
-        :root {
-          --rose-bg:        #000000;
-          --rose-surface:   #100008;
-          --rose-overlay:   #1f0e16;
-          --rose-border:    #7a4462;
-          --rose-subtle:    #a85e74;
-          --rose-text:      #f4d8de;
-          --rose-bright:    #fceff2;
-          --rose-accent:    #d878a0;
-          --rose-focus:     #fc9eb6;
-          --rose-red:       #c84060;
-          --rose-peach:     #e6c08a;
-
-          --toolbar-bgcolor: var(--rose-bg) !important;
-          --toolbar-color: var(--rose-text) !important;
-          --tabs-border-color: var(--rose-border) !important;
-          --lwt-accent-color: var(--rose-bg) !important;
-          --lwt-text-color: var(--rose-text) !important;
-          --lwt-toolbar-field-background-color: var(--rose-surface) !important;
-          --lwt-toolbar-field-color: var(--rose-text) !important;
-          --lwt-toolbar-field-focus: var(--rose-overlay) !important;
-          --lwt-toolbar-field-focus-color: var(--rose-bright) !important;
-          --lwt-toolbar-field-border-color: var(--rose-border) !important;
-          --lwt-tab-text: var(--rose-text) !important;
-          --lwt-selected-tab-background-color: var(--rose-overlay) !important;
-        }
-
-        #main-window,
-        #navigator-toolbox,
-        #titlebar,
-        #TabsToolbar,
-        #nav-bar,
-        #PersonalToolbar {
-          background-color: var(--rose-bg) !important;
-          color: var(--rose-text) !important;
-          border-color: var(--rose-border) !important;
-        }
-
-        #urlbar,
-        #searchbar {
-          background-color: var(--rose-surface) !important;
-          color: var(--rose-text) !important;
-          border: 1px solid var(--rose-border) !important;
-        }
-
-        #urlbar[focused="true"] {
-          border-color: var(--rose-accent) !important;
-          box-shadow: 0 0 0 1px var(--rose-accent) !important;
-        }
-
-        #urlbar-input {
-          color: var(--rose-text) !important;
-          caret-color: var(--rose-focus) !important;
-        }
-
-        .tab-background[selected="true"] {
-          background-color: var(--rose-overlay) !important;
-          border-bottom: 2px solid var(--rose-accent) !important;
-        }
-
-        .tab-background:not([selected="true"]):hover {
-          background-color: var(--rose-surface) !important;
-        }
-
-        .tab-label {
-          color: var(--rose-text) !important;
-        }
-
-        .tab-close-button:hover {
-          background-color: var(--rose-red) !important;
-          color: #ffffff !important;
-        }
-
-        .toolbarbutton-1:hover > .toolbarbutton-icon,
-        toolbarbutton:hover {
-          background-color: var(--rose-overlay) !important;
-          color: var(--rose-focus) !important;
-        }
-
-        menupopup,
-        panel,
-        .panel-arrowcontent {
-          background-color: var(--rose-surface) !important;
-          color: var(--rose-text) !important;
-          border: 1px solid var(--rose-border) !important;
-        }
-
-        menuitem:hover,
-        menu:hover {
-          background-color: var(--rose-accent) !important;
-          color: var(--rose-bg) !important;
-        }
-
-        #identity-box,
-        #tracking-protection-icon-container {
-          color: var(--rose-subtle) !important;
-        }
-      '';
-      userContent = ''
-        @-moz-document url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
-          :root,
-          body {
-            background-color: #000000 !important;
-            color: #f4d8de !important;
-          }
-          .search-wrapper input,
-          .fake-editable {
-            background-color: #100008 !important;
-            color: #f4d8de !important;
-            border: 1px solid #7a4462 !important;
-          }
-          a { color: #d878a0 !important; }
-          a:hover { color: #fc9eb6 !important; }
-        }
-
-        @-moz-document url-prefix("about:preferences"),
-                       url-prefix("about:addons"),
-                       url-prefix("about:config") {
-          :root {
-            --in-content-page-background: #000000 !important;
-            --in-content-page-color: #f4d8de !important;
-            --in-content-box-background: #100008 !important;
-            --in-content-box-background-hover: #1f0e16 !important;
-            --in-content-box-border-color: #7a4462 !important;
-            --in-content-accent-color: #d878a0 !important;
-            --in-content-link-color: #d878a0 !important;
-            --in-content-link-color-hover: #fc9eb6 !important;
-            --in-content-button-background: #1f0e16 !important;
-            --in-content-button-background-hover: #4a2638 !important;
-            --in-content-primary-button-background: #d878a0 !important;
-            --in-content-primary-button-background-hover: #fc9eb6 !important;
-            --in-content-primary-button-text-color: #000000 !important;
-            --in-content-primary-button-text-color-hover: #000000 !important;
-          }
-        }
-      '';
+      # local SearXNG instance (see system/default.nix). `force` is required to
+      # replace the search.json.mozlz4 this profile already has; the generated
+      # file is the version-12 format Firefox 156 reads, and HM hashes the
+      # default engine id exactly the way SearchSettings.sys.mjs validates it.
+      search = {
+        engines.searxng-local = {
+          name = "SearXNG (local)";
+          urls = [
+            {
+              template = "http://127.0.0.1:8888/search";
+              params = [{ name = "q"; value = "{searchTerms}"; }];
+            }
+          ];
+          icon = "${pkgs.searxng}/share/static/themes/simple/img/favicon.png";
+          definedAliases = ["@s" "@searxng"];
+        };
+        default = "searxng-local";
+        privateDefault = "searxng-local";
+        force = true;
+      };
     };
   };
 

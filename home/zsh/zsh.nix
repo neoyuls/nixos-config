@@ -15,11 +15,7 @@
       disk = "df -h | grep nvme";
 
       # always run agents in a sandbox
-      # dst = sandboxed wrapper (apps/dsh-tui.nix), raw-dsh = unsandboxed
-
       oco = "cco opencode";
-      dst = "dsh-tui";
-      raw-dsh = "dsh --profile dsh-tui";
       upload-albums = "rclone copy ~/Music/albums proton-drive:Music/albums --transfers=2 --no-update-modtime --protondrive-replace-existing-draft --retries=5 --low-level-retries=10";
     };
     sessionVariables = {

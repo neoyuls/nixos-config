@@ -21,9 +21,10 @@
 # symlinks and silently break that persistence -- the same failure mode as
 # vesktop's settings.json.
 #
-# To activate the theme: run /settings inside pi, or set it in the (mutable)
-# ~/.pi/agent/settings.json:
-#   { "theme": "stylix" }
+# The theme is activated by assets/pi_custom_header.ts, which selects "stylix"
+# on session_start; setTheme persists through the mutable settings.json, so it
+# is a one-time write. Selecting a different theme with /settings still works,
+# but the extension re-selects "stylix" on the next start.
 let
   # Palette comes from the system Stylix config (system/default.nix ->
   # stylix.base16Scheme; currently assets/miku-stars.yaml). Nothing below
@@ -178,7 +179,9 @@ let
   vendored = [
     # extensions with no npm dependencies (bash-guard/browser/web-fetch are
     # omitted: they need node_modules, which a read-only store symlink can't have)
-    "extensions/custom-header.ts"
+    #
+    # extensions/custom-header.ts is deliberately absent: the local, themed copy
+    # in assets/ is linked over it below instead of pi-config's built-in header.
     "extensions/ask-user-question.ts"
     "extensions/prompt-snippets/index.ts"
     "extensions/prompt-snippets/snippets/ask-questions.md"
@@ -219,5 +222,10 @@ in {
     // {
       ".pi/agent/themes/stylix.json".source =
         (pkgs.formats.json {}).generate "pi-theme-stylix.json" theme;
+      # Local custom header (assets/pi_custom_header.ts): the pi wordmark in a
+      # theme-token accent ramp, plus the command that restores the built-in one.
+      # Name must stay custom-header.ts so pi discovers it as an extension.
+      # Two levels up: this file is home/pi/pi.nix, assets/ is at the repo root.
+      ".pi/agent/extensions/custom-header.ts".source = ../../assets/pi_custom_header.ts;
     };
 }

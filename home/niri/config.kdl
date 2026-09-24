@@ -224,6 +224,13 @@ Mod+Shift+B      { spawn "noctalia" "msg" "bar-toggle"; }
 	Mod+O            { switch-layout "next"; }
 	Mod+Shift+O      { switch-layout "prev"; }
 
-	Mod+Ctrl+R       { spawn "sh" "-c" "pkill -x noctalia; noctalia &"; }
+	// Recovery from a dead lock screen (niri's solid "red screen"): if the lock
+	// client (noctalia) is restarted while the session is locked -- e.g. by a
+	// `nixos-rebuild switch` restarting noctalia.service -- niri keeps the session
+	// locked with input disabled. This bind is allowed while locked, so it can
+	// re-raise noctalia's lock screen and bring the session back.
+	// https://niri-wm.github.io/niri/FAQ.html#how-do-i-recover-from-a-dead-screen-locker-from-a-red-screen
+	Mod+Alt+L        allow-when-locked=true { spawn "noctalia" "msg" "session" "lock"; }
+
 	Mod+Shift+R      { spawn "sh" "-c" "niri msg action reload-config"; }
 }

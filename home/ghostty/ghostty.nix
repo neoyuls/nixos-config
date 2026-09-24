@@ -13,30 +13,33 @@
       confirm-close-surface = false;
       mouse-hide-while-typing = true;
 
-      background = "#0b0d13";
-      foreground = "#cfe3f7";
-      cursor-color = "#6de3e5";
-      cursor-text = "#0b0d13";
-      selection-background = "#1e2c47";
-      selection-foreground = "#cfe3f7";
+      background = "#f7f0e7";
+      foreground = "#3c3a34";
+      cursor-color = "#0d7892";
+      cursor-text = "#f7f0e7";
+      selection-background = "#e0d0bd";
+      selection-foreground = "#181a17";
 
+      # ANSI ramp runs light -> dark (polarity is light), so slot 0 is the
+      # darkest tone and slot 15 is the background:
+      #   0 black base07, 8 bright-black base04, 7 white base03, 15 base00
       palette = [
-        "0=#0b0d13"
-        "1=#ff4f8b"
-        "2=#6fd6a8"
-        "3=#f7d774"
-        "4=#5aa9f0"
-        "5=#b18bd8"
-        "6=#6de3e5"
-        "7=#a8c8e8"
-        "8=#507bb0"
-        "9=#ff4f8b"
-        "10=#6fd6a8"
-        "11=#f7d774"
-        "12=#5aa9f0"
-        "13=#b18bd8"
-        "14=#6de3e5"
-        "15=#eef6ff"
+        "0=#181a17"
+        "1=#a8321c"
+        "2=#2e6f4a"
+        "3=#8b681c"
+        "4=#1a5b8c"
+        "5=#6d4f76"
+        "6=#0d7892"
+        "7=#968878"
+        "8=#6d6259"
+        "9=#a8321c"
+        "10=#2e6f4a"
+        "11=#8b681c"
+        "12=#1a5b8c"
+        "13=#6d4f76"
+        "14=#0d7892"
+        "15=#f7f0e7"
       ];
 
       keybind = [

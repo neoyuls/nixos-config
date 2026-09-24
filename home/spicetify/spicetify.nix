@@ -7,14 +7,14 @@
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   c = config.lib.stylix.colors;
 
-  mikuStarsTheme = pkgs.stdenvNoCC.mkDerivation {
-    name = "miku-stars";
+  cdmxTheme = pkgs.stdenvNoCC.mkDerivation {
+    name = "cdmx-jogorman";
     dontUnpack = true;
     installPhase = ''
       mkdir -p $out
 
       cat > $out/color.ini << EOF
-      [miku-stars]
+      [cdmx-jogorman]
       text              = ${c.base06}
       subtext           = ${c.base07}
       sidebar-text      = ${c.base06}
@@ -37,86 +37,86 @@
       :root,
       .Root__right-sidebar,
       .Root__right-sidebar * {
-        --spice-subtext: #eef6ff !important;
-        --encore-secondary-text: #eef6ff !important;
-        --text-subdued: #eef6ff !important;
-        --text-base: #cfe3f7 !important;
+        --spice-subtext: #181a17 !important;
+        --encore-secondary-text: #181a17 !important;
+        --text-subdued: #181a17 !important;
+        --text-base: #2a2b26 !important;
       }
 
       /* Force readable text color directly in Friend Activity */
       .Root__right-sidebar * {
-        color: #a8c8e8 !important;
+        color: #3c3a34 !important;
       }
       .Root__right-sidebar strong,
       .Root__right-sidebar [class*="name"],
       .Root__right-sidebar [class*="Name"],
       .Root__right-sidebar [class*="title"],
       .Root__right-sidebar [class*="Title"] {
-        color: #eef6ff !important;
+        color: #181a17 !important;
       }
 
       .Root__main-view {
-        background: #0b0d13 !important;
+        background: #f7f0e7 !important;
       }
 
       .Root__nav-bar,
       .Root__top-bar {
-        background: #141b2b !important;
+        background: #efe4d6 !important;
       }
 
       /* Now-playing bar */
       .Root__now-playing-bar {
-        background: #141b2b !important;
-        border-top: 1px solid rgba(109, 227, 229, 0.3) !important;
+        background: #efe4d6 !important;
+        border-top: 1px solid rgba(13, 120, 146, 0.3) !important;
       }
 
       /* Top bar */
       .Root__top-bar header {
-        background: #141b2b !important;
+        background: #efe4d6 !important;
       }
 
       /* Left sidebar nav */
       .Root__nav-bar > nav,
       .Root__nav-bar > .nav-alt {
-        background: #141b2b !important;
+        background: #efe4d6 !important;
       }
 
       /* Cards */
       .main-card-card {
-        background: #1e2c47 !important;
+        background: #e0d0bd !important;
         transition: background 0.2s ease !important;
       }
 
       .main-card-card:hover {
-        background: #26365a !important;
+        background: #d5c3ad !important;
       }
 
       /* Context menus / dropdowns */
       .main-contextMenu-menu,
       .x-filterBox-filterInput {
-        background: #1e2c47 !important;
-        border: 1px solid rgba(109, 227, 229, 0.25) !important;
+        background: #e0d0bd !important;
+        border: 1px solid rgba(13, 120, 146, 0.25) !important;
       }
 
-      /* Player control icons — brighten against dark now-playing bar */
+      /* Player control icons — darken against the light now-playing bar */
       .Root__now-playing-bar button svg,
       .Root__now-playing-bar button path {
-        fill: #eef6ff !important;
+        fill: #181a17 !important;
       }
       .Root__now-playing-bar button {
         opacity: 1 !important;
       }
       /* Icon-only buttons (shuffle, download, invite, ...) draw their SVGs
-         with currentColor on dark backgrounds — keep them light */
+         with currentColor on light backgrounds — keep them dark */
       button {
-        color: #cfe3f7 !important;
+        color: #2a2b26 !important;
       }
-      /* Dark text only on buttons with light cyan filled backgrounds */
+      /* Light text only on buttons with dark teal filled backgrounds */
       .encore-bright-accent-set button,
       [data-encore-id="buttonPrimary"],
       [class*="button"][class*="filled"],
       [class*="Button"][class*="filled"] {
-        color: #0b0d13 !important;
+        color: #f7f0e7 !important;
       }
       CSSEOF
     '';
@@ -127,10 +127,10 @@ in {
   programs.spicetify = {
     enable = true;
     theme = {
-      name = "miku-stars";
-      src = mikuStarsTheme;
+      name = "cdmx-jogorman";
+      src = cdmxTheme;
     };
-    colorScheme = "miku-stars";
+    colorScheme = "cdmx-jogorman";
 
     enabledExtensions = with spicePkgs.extensions; [
       adblockify

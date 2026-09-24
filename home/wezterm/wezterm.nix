@@ -1,13 +1,13 @@
 {lib, ...}: let
-  bg = "#0b0d13";
-  fg = "#cfe3f7";
-  cursor = "#6de3e5";
-  selection = "#1e2c47";
+  bg = "#f7f0e7";
+  fg = "#3c3a34";
+  cursor = "#0d7892";
+  selection = "#e0d0bd";
   tab = {
-    activeBg = "#5aa9f0";
-    activeFg = "#0b0d13";
-    inactiveBg = "#141b2b";
-    inactiveFg = "#a8c8e8";
+    activeBg = "#0d7892";
+    activeFg = "#f7f0e7";
+    inactiveBg = "#efe4d6";
+    inactiveFg = "#6d6259";
   };
 
   bind = key: mods: action: {inherit key mods action;};
@@ -39,8 +39,9 @@ in {
         cursor_fg = bg;
         selection_bg = selection;
         selection_fg = fg;
-        ansi = ["#0b0d13" "#ff4f8b" "#6fd6a8" "#f7d774" "#5aa9f0" "#b18bd8" "#6de3e5" "#a8c8e8"];
-        brights = ["#507bb0" "#ff4f8b" "#6fd6a8" "#f7d774" "#5aa9f0" "#b18bd8" "#6de3e5" "#eef6ff"];
+        # light polarity: slot 0 is the darkest tone and slot 15 the background
+        ansi = ["#181a17" "#a8321c" "#2e6f4a" "#8b681c" "#1a5b8c" "#6d4f76" "#0d7892" "#968878"];
+        brights = ["#6d6259" "#a8321c" "#2e6f4a" "#8b681c" "#1a5b8c" "#6d4f76" "#0d7892" "#f7f0e7"];
         split = selection;
         tab_bar = {
           background = bg;

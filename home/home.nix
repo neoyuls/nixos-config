@@ -5,24 +5,32 @@
   ...
 }:
 # Theming note: Stylix handles the system-wide base16 colorscheme
-# (assets/miku-stars.yaml, derived from the Sleeping Miku Animated Firefox
-# theme and assets/wallpapers/miku-stars.jpg).
-# Several programs use manually crafted themes instead of the Stylix target,
-# all derived from that base16 palette. If you change the colorscheme, update
-# these files too:
+# (assets/cdmx-jogorman.yaml — a light palette sampled from
+# assets/wallpapers/cdmx_jogorman.jpg, Juan O'Gorman's "The City of Mexico",
+# 1949). polarity = "light", so base00 is the lightest
+# tone and the base04-07 foreground ramp runs dark->darker.
+#
+# To revert the whole theme: `git checkout pre-cdmx-theme` (tagged before this
+# work) or `git revert` the theming commits.
+#
+# Several programs use manually crafted themes instead of the Stylix target.
+# Most now derive their colours from config.lib.stylix.colors and so follow a
+# scheme change automatically:
+#   - home/pi/pi.nix, home/fastfetch/fastfetch.nix, home/qgis/qgis.nix,
+#     home/vesktop/vesktop.nix, home/spicetify/spicetify.nix (color.ini),
+#     home/zsh/zsh.nix, home/mime/mime.nix
+# The rest hardcode hex and must be edited by hand:
 #   - home/ghostty/ghostty.nix
 #   - home/wezterm/wezterm.nix
-#   - home/spicetify/spicetify.nix
-#   - home/vesktop/vesktop.nix
-#   - home/firefox/firefox.nix
-#   - home/qgis/qgis.nix
-#   - home/fastfetch/fastfetch.nix
 #   - home/neovim/neovim.nix (cyberdream color override)
-#   - home/noctalia/noctalia.nix (customPalettes.Mine)
-#   - home/yazi/theme.toml (assets/miku-stars.tmTheme)
-#   - home/niri/config.kdl + the niri/colors.kdl below
+#   - home/noctalia/noctalia.nix (customPalettes.Mine, variant must match polarity)
+#   - home/yazi/theme.toml (assets/cdmx-jogorman.tmTheme)
+#   - home/niri/config.kdl (the niri/colors.kdl below is generated)
 #   - system/lemurs.nix
-# (home/pi/pi.nix regenerates itself from config.lib.stylix.colors)
+# Deliberately NOT themed:
+#   - home/firefox/firefox.nix stays on the dark "Sleeping Miku Animated" theme
+#     (vendored xpi + activeThemeID pin), overriding stylix.targets.firefox
+#   - home/zathura/zathura.nix forces a B&W recolor for PDF readability
 {
   imports = [
     # ./element/element.nix
@@ -67,7 +75,7 @@
       }
     '';
     "yazi/theme.toml".source = ./yazi/theme.toml;
-    "yazi/miku-stars.tmTheme".source = ../assets/miku-stars.tmTheme;
+    "yazi/cdmx-jogorman.tmTheme".source = ../assets/cdmx-jogorman.tmTheme;
   };
 
   home.file."Pictures/wallpapers".source = ../assets/wallpapers;

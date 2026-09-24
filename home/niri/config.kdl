@@ -54,13 +54,13 @@ layout {
 
 	border {
 		width 4
-		active-color "#6de3e5"
-		inactive-color "#1e2c47"
+		active-color "#0d7892"
+		inactive-color "#e0d0bd"
 
-		urgent-color "#ff4f8b"
+		urgent-color "#a8321c"
 
-		active-gradient from="#5aa9f0" to="#6de3e5" angle=45 relative-to="workspace-view"
-		inactive-gradient from="#0b0d13" to="#1e2c47" angle=45 relative-to="workspace-view"
+		active-gradient from="#1a5b8c" to="#0d7892" angle=45 relative-to="workspace-view"
+		inactive-gradient from="#f7f0e7" to="#e0d0bd" angle=45 relative-to="workspace-view"
 	}
 
 	shadow {

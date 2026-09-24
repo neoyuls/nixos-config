@@ -1,0 +1,41 @@
+scheme: "cdmx-jogorman"
+author: "yuls (sampled from assets/wallpapers/cdmx_jogorman.jpg)"
+variant: "light"
+
+# Palette source:
+#   assets/wallpapers/cdmx_jogorman.jpg — "The City of Mexico" (1949, tempera
+#   on masonite) by Juan O'Gorman: a bright sky over the Valley of Mexico and
+#   its snow-capped volcanoes, a labourer in denim overalls holding a rolled
+#   blueprint, the eagle and serpent above the growing city, and a pair of
+#   hands holding a plan of the capital in the foreground.
+#
+#   Every entry below (except base0E) was matched back to an actual pixel in
+#   the mural; the comment notes which part of the painting it came from.
+#   Accents were then darkened until each clears 4.5:1 against base00 so they
+#   stay legible as foreground text on a light background.
+#
+#   base00-03  warm plaster / stone, light -> dark
+#   base04-07  warm charcoal, dim -> darkest
+#   base08-0F  the mural's saturated hues, darkened for legibility
+
+# base00-03: backgrounds — palest fresco plaster down to dusty stone.
+base00: "f7f0e7"   # main bg    - bleached plaster sky behind the city      ----
+base01: "efe4d6"   # panels     - lit façade / toolbar surfaces             ---
+base02: "e0d0bd"   # selection  - mid-tone adobe wall                        --
+base03: "968878"   # comments   - dusty stone, borders (3.1:1 on base00)      -
+
+# base04-07: foregrounds — warm charcoal ramp (shadows under the scaffolding)
+base04: "6d6259"   # dim fg     - shaded wall, 5.2:1 on base00                +
+base05: "3c3a34"   # default fg - mortar shadow, 10.1:1 on base00            ++
+base06: "2a2b26"   # light fg    12.6:1 on base00                            +++
+base07: "181a17"   # brightest   15.5:1 on base00                            ++++
+
+# base08-0F: semantic colors — anchored to the mural's saturated passages
+base08: "a8321c"   # brick / terracotta red   - foreground brickwork, deep mortar
+base09: "aa5721"   # burnt orange             - terracotta roof tiles, skin tone
+base0A: "8b681c"   # ochre / wheat gold       - dry hillside, eagle's gold, khaki stone
+base0B: "2e6f4a"   # foliage green            - trees along the avenues, parkland
+base0C: "0d7892"   # mural teal               - the sky's saturated teal (primary accent)
+base0D: "1a5b8c"   # blueprint blue           - the rolled blueprint, deep city blue
+base0E: "6d4f76"   # dusty plum               - violet-grey shadow (interpolated; no true purple in the mural)
+base0F: "8a5636"   # wood / earth brown       - timber planks and brown earth in the foreground

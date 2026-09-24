@@ -1,14 +1,15 @@
 {config, ...}: let
   c = config.lib.stylix.colors;
 in {
-  # Night Mapping dark theme as base; miku-stars stylesheet overrides palette colors
+  # Night Mapping as base; the cdmx-jogorman stylesheet overrides the palette
+  # (Night Mapping is dark, so the generated light palette is what you see)
   xdg.dataFile."QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini".text = ''
     [UI]
     UITheme=Night Mapping
-    customStyleSheet=${config.home.homeDirectory}/.config/QGIS/miku-stars.qss
+    customStyleSheet=${config.home.homeDirectory}/.config/QGIS/cdmx-jogorman.qss
   '';
 
-  xdg.configFile."QGIS/miku-stars.qss".text = ''
+  xdg.configFile."QGIS/cdmx-jogorman.qss".text = ''
     QWidget {
       background-color: #${c.base00};
       color: #${c.base06};

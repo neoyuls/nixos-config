@@ -19,9 +19,9 @@
   # Stylix
   stylix = {
     enable = true;
-    polarity = "dark";
-    base16Scheme = ../assets/miku-stars.yaml;
-    image = ../assets/wallpapers/miku-stars.jpg; # required by stylix
+    polarity = "light";
+    base16Scheme = ../assets/cdmx-jogorman.yaml;
+    image = ../assets/wallpapers/cdmx_jogorman.jpg; # required by stylix
     targets.kmscon.enable = false;
   };
   # BOOTLOADER

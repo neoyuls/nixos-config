@@ -7,8 +7,10 @@ cursor {
 input {
 	keyboard {
 		xkb {
-		layout "us"
-		variant "altgr-intl"
+		// index 0 = us(altgr-intl), index 1 = es
+		// switch with `niri msg action switch-layout next` or Mod+O / Mod+Shift+O
+		layout "us,es"
+		variant "altgr-intl,"
 		options "caps:escape"
 		}
 
@@ -219,6 +221,9 @@ Mod+Shift+B      { spawn "noctalia" "msg" "bar-toggle"; }
 
 	Mod+Shift+E      { quit; }
 	Mod+Shift+P      { power-off-monitors; }
+	Mod+O            { switch-layout "next"; }
+	Mod+Shift+O      { switch-layout "prev"; }
+
 	Mod+Ctrl+R       { spawn "sh" "-c" "pkill -x noctalia; noctalia &"; }
 	Mod+Shift+R      { spawn "sh" "-c" "niri msg action reload-config"; }
 }

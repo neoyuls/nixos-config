@@ -48,17 +48,13 @@ in {
     };
 
     vencord.extraQuickCss = ''
-      /* CDMX Jogorman — derived from the Stylix base16 palette.
-         Scoped to both light and dark selector sets: Discord's own theme
-         switcher is independent of Stylix, so the tokens must win in either. */
+      /* Miku Stars — derived from the Stylix base16 palette */
 
       .theme-dark,
-      .theme-light,
       .theme-darker,
       .theme-midnight,
       .visual-refresh,
       .visual-refresh.theme-dark,
-      .visual-refresh.theme-light,
       .visual-refresh.theme-darker,
       .visual-refresh.theme-midnight {
         /* Visual Refresh tokens */

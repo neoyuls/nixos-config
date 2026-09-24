@@ -35,7 +35,7 @@
       };
 
       theme = {
-        mode = "light";
+        mode = "dark";
         source = "custom";
         custom_palette = "Mine";
       };
@@ -43,7 +43,7 @@
       wallpaper = {
         enabled = true;
         directory = "~/Pictures/wallpapers";
-        default.path = "~/Pictures/wallpapers/cdmx_jogorman.jpg";
+        default.path = "~/Pictures/wallpapers/miku-stars.jpg";
       };
 
       bar.main = {
@@ -87,54 +87,51 @@
       };
     };
 
-    # cdmx-jogorman base16 palette mapped to Material Design color roles.
-    # Polarity is light, so this is the `light` variant: surfaces are plaster
-    # cream and on* colours are the warm charcoal ramp.
+    # miku-stars base16 palette mapped to Material Design color roles
     customPalettes.Mine = {
-      light = {
-        mPrimary = "#0d7892"; # base0C mural teal (primary accent)
-        mOnPrimary = "#f7f0e7"; # base00
-        mSecondary = "#1a5b8c"; # base0D blueprint blue
-        mOnSecondary = "#f7f0e7"; # base00
-        mTertiary = "#6d4f76"; # base0E dusty plum
-        mOnTertiary = "#f7f0e7"; # base00
-        mError = "#a8321c"; # base08 brick red
-        mOnError = "#f7f0e7"; # base00
-        mSurface = "#f7f0e7"; # base00 plaster cream
-        mOnSurface = "#2a2b26"; # base06 dark fg
-        mSurfaceVariant = "#efe4d6"; # base01 raised surface
-        mOnSurfaceVariant = "#3c3a34"; # base05 mid fg
-        mOutline = "#968878"; # base03 dusty stone
-        mShadow = "#968878"; # base03 (shadows read as stone, not paper)
-        mHover = "#0d7892"; # base0C mural teal
-        mOnHover = "#f7f0e7"; # base00
+      dark = {
+        mPrimary = "#6de3e5"; # base0C Miku cyan
+        mOnPrimary = "#0b0d13"; # base00
+        mSecondary = "#5aa9f0"; # base0D starry blue
+        mOnSecondary = "#0b0d13"; # base00
+        mTertiary = "#b18bd8"; # base0E swirl violet
+        mOnTertiary = "#0b0d13"; # base00
+        mError = "#ff4f8b"; # base08 Miku pink
+        mOnError = "#0b0d13"; # base00
+        mSurface = "#0b0d13"; # base00 near-black navy
+        mOnSurface = "#cfe3f7"; # base06 light fg
+        mSurfaceVariant = "#141b2b"; # base01 theme toolbar
+        mOnSurfaceVariant = "#a8c8e8"; # base05 mid fg
+        mOutline = "#3f6699"; # base03 starry blue
+        mShadow = "#0b0d13"; # base00
+        mHover = "#6de3e5"; # base0C Miku cyan
+        mOnHover = "#0b0d13"; # base00
         terminal = {
-          foreground = "#3c3a34"; # base05
-          background = "#f7f0e7"; # base00
-          selectionFg = "#181a17"; # base07
-          selectionBg = "#e0d0bd"; # base02
-          cursor = "#0d7892"; # base0C
-          cursorText = "#f7f0e7"; # base00
-          # light polarity: slot 0 is the darkest tone, slot 15 the background
+          foreground = "#cfe3f7"; # base06
+          background = "#0b0d13"; # base00
+          selectionFg = "#0b0d13"; # base00
+          selectionBg = "#5aa9f0"; # base0D
+          cursor = "#6de3e5"; # base0C
+          cursorText = "#0b0d13"; # base00
           normal = {
-            black = "#181a17"; # base07
-            red = "#a8321c"; # base08
-            green = "#2e6f4a"; # base0B
-            yellow = "#8b681c"; # base0A
-            blue = "#1a5b8c"; # base0D
-            magenta = "#6d4f76"; # base0E
-            cyan = "#0d7892"; # base0C
-            white = "#968878"; # base03
+            black = "#0b0d13"; # base00
+            red = "#ff4f8b"; # base08
+            green = "#6fd6a8"; # base0B
+            yellow = "#f7d774"; # base0A
+            blue = "#5aa9f0"; # base0D
+            magenta = "#b18bd8"; # base0E
+            cyan = "#6de3e5"; # base0C
+            white = "#a8c8e8"; # base05
           };
           bright = {
-            black = "#6d6259"; # base04, readable bright-black
-            red = "#a8321c"; # base08
-            green = "#2e6f4a"; # base0B
-            yellow = "#8b681c"; # base0A
-            blue = "#1a5b8c"; # base0D
-            magenta = "#6d4f76"; # base0E
-            cyan = "#0d7892"; # base0C
-            white = "#f7f0e7"; # base00
+            black = "#507bb0"; # base04, readable bright-black
+            red = "#ff4f8b"; # base08
+            green = "#6fd6a8"; # base0B
+            yellow = "#f7d774"; # base0A
+            blue = "#5aa9f0"; # base0D
+            magenta = "#b18bd8"; # base0E
+            cyan = "#6de3e5"; # base0C
+            white = "#eef6ff"; # base07
           };
         };
       };

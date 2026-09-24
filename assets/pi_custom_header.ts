@@ -8,7 +8,7 @@
  * Theming: every colour here is a semantic token of the *active* pi theme, so
  * the header follows theme changes automatically. The system theme ("stylix",
  * generated from the Stylix base16 palette in home/pi/pi.nix) maps the logo
- * ramp to the wallpaper's mural teal -> blueprint blue -> dusty plum. Keep using
+ * ramp to the wallpaper's Miku cyan -> starry blue -> swirl violet. Keep using
  * tokens rather than hex so the header survives a colourscheme change.
  *
  * Usage: edit this file and run /reload in pi.

@@ -13,24 +13,18 @@ $EDITOR local.nix
 
 ## Theming
 
-The system-wide base16 palette lives in `assets/cdmx-jogorman.yaml` (polarity `light`),
-sampled from `assets/wallpapers/cdmx_jogorman.jpg` — Jorge González Camarena's
-*La Ciudad de México* mural. `system/default.nix` points Stylix at both.
+The system-wide base16 palette lives in `assets/miku-stars.yaml` (polarity `dark`),
+derived from the Sleeping Miku Animated Firefox theme and `assets/wallpapers/miku-stars.jpg`.
+`system/default.nix` points Stylix at both. The full list of hand-themed files (and the
+few deliberately left alone, such as the Miku Firefox theme and zathura's forced B&W
+recolor) is documented in the header comment of `home/home.nix`.
 
-The full list of hand-themed files (and the few deliberately left alone, such as the
-Miku Firefox theme and zathura's forced B&W recolor) is documented in the header
-comment of `home/home.nix`.
+### The previous mural scheme
 
-### Reverting the theme
-
-`pre-cdmx-theme` tags the last commit before this theme was introduced:
-
-```bash
-git checkout pre-cdmx-theme     # inspect the previous state
-nixos-rebuild switch --flake .#$(hostname)
-```
-
-To go back to the mural theme afterwards, check out your working branch again. The old
-`assets/miku-stars.yaml` and `assets/miku-stars.tmTheme` are still in the tree and are
-never deleted, so the previous scheme can also be re-activated by pointing
-`stylix.base16Scheme` back at them.
+`assets/cdmx-jogorman.yaml` and `assets/cdmx-jogorman.tmTheme` are the light palette
+sampled from `assets/wallpapers/cdmx_jogorman.jpg`. They were introduced by commit
+`8fd3a12`, which also introduced this colour scheme; tag `pre-cdmx-theme` marks the
+state just before it. The mural assets are intentionally kept in the tree even though
+nothing references them now, so that scheme can be re-activated by pointing
+`stylix.base16Scheme`/`stylix.image` back at them and redoing the hand edits in the
+files listed in `home/home.nix`.

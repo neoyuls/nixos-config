@@ -27,7 +27,7 @@
 # but the extension re-selects "stylix" on the next start.
 let
   # Palette comes from the system Stylix config (system/default.nix ->
-  # stylix.base16Scheme; currently assets/cdmx-jogorman.yaml). Nothing below
+  # stylix.base16Scheme; currently assets/miku-stars.yaml). Nothing below
   # hardcodes a colour, so changing the scheme or the Stylix wallpaper
   # regenerates this theme on the next rebuild -- no edit needed here.
   c = config.lib.stylix.colors;
@@ -61,23 +61,23 @@ let
   # base16 semantic slots. Names are pi-facing (referenced from `colors` below),
   # so they describe intent rather than the raw base0X index.
   vars = {
-    bg0 = "#${c.base00}"; # plaster cream, transcript background
-    bg1 = "#${c.base01}"; # raised panel, user message / tool panel background
+    bg0 = "#${c.base00}"; # near-black navy, transcript background
+    bg1 = "#${c.base01}"; # theme toolbar, user message / tool panel background
     bg2 = "#${c.base02}"; # selection, raised surface
-    bg3 = "#${c.base03}"; # dusty stone, comments/muted borders
-    fg0 = "#${c.base04}"; # dim stone, secondary text
-    fg1 = "#${c.base05}"; # mid charcoal, default foreground
-    fg2 = "#${c.base06}"; # dark charcoal
-    fg3 = "#${c.base07}"; # near-black
+    bg3 = "#${c.base03}"; # starry blue, comments/muted borders
+    fg0 = "#${c.base04}"; # dim blue, secondary text
+    fg1 = "#${c.base05}"; # mid blue, default foreground
+    fg2 = "#${c.base06}"; # light blue
+    fg3 = "#${c.base07}"; # near-white
 
-    red = "#${c.base08}"; # brick red
-    orange = "#${c.base09}"; # burnt orange
-    yellow = "#${c.base0A}"; # ochre / wheat gold
-    green = "#${c.base0B}"; # foliage green (base16 "green" slot)
-    cyan = "#${c.base0C}"; # mural teal, primary accent
-    blue = "#${c.base0D}"; # blueprint blue
-    magenta = "#${c.base0E}"; # dusty plum
-    brown = "#${c.base0F}"; # wood brown (unused, kept for completeness)
+    red = "#${c.base08}"; # Miku pink
+    orange = "#${c.base09}"; # warm star glow
+    yellow = "#${c.base0A}"; # star gold
+    green = "#${c.base0B}"; # mint green (base16 "green" slot)
+    cyan = "#${c.base0C}"; # Miku cyan, primary accent
+    blue = "#${c.base0D}"; # starry blue
+    magenta = "#${c.base0E}"; # swirl violet
+    brown = "#${c.base0F}"; # muted mauve (unused, kept for completeness)
 
     toolPendingBg = blend c.base01 c.base0D 0.14;
     toolSuccessBg = blend c.base01 c.base0B 0.22;

@@ -147,25 +147,21 @@
         require("ccc").setup({ highlighter = { auto_enable = true } })
         require("cyberdream").setup({
           italic_comments = true,
-          -- cyberdream is dark-first, so every slot is driven from the light
-          -- cdmx-jogorman palette; bg_alt/bg_highlight step *darker* than bg
-          -- on a light scheme, and pink/purple come from the mural's rose
-          -- shadow and violet-grey rather than cyberdream's neon defaults.
           colors = {
-            bg            = "#f7f0e7",
-            bg_alt        = "#efe4d6",
-            bg_highlight  = "#e0d0bd",
-            fg            = "#2a2b26",
-            grey          = "#968878",
-            blue          = "#1a5b8c",
-            green         = "#2e6f4a",
-            cyan          = "#0d7892",
-            red           = "#a8321c",
-            yellow        = "#8b681c",
-            magenta       = "#6d4f76",
-            pink          = "#8f3548",
-            orange        = "#aa5721",
-            purple        = "#5a4472",
+            bg            = "#0b0d13",
+            bg_alt        = "#141b2b",
+            bg_highlight  = "#1e2c47",
+            fg            = "#cfe3f7",
+            grey          = "#507bb0",
+            blue          = "#5aa9f0",
+            green         = "#6fd6a8",
+            cyan          = "#6de3e5",
+            red           = "#ff4f8b",
+            yellow        = "#f7d774",
+            magenta       = "#b18bd8",
+            pink          = "#8feff0",
+            orange        = "#f2a35c",
+            purple        = "#b18bd8",
           },
         })
         vim.cmd("colorscheme cyberdream")

@@ -347,6 +347,7 @@
       ]))
 
     # Dev
+    bubblewrap
     gh
     pnpm
     micromamba

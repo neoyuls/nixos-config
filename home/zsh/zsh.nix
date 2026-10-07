@@ -23,7 +23,7 @@
     };
     oh-my-zsh = {
       enable = true;
-      theme = "amuse";
+      theme = "jonathan";
       plugins = ["git" "colorize"];
     };
     plugins = [

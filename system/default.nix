@@ -347,7 +347,6 @@
       ]))
 
     # Dev
-    bubblewrap
     gh
     pnpm
     micromamba
@@ -471,6 +470,13 @@
         printf 'SEARXNG_SECRET=%s\n' "$secret" > /var/lib/searxng/searxng.env
       )
     fi
+  '';
+
+  # pi-better-sandbox resolves bubblewrap only from /usr/bin or /bin, which
+  # NixOS does not populate (it only creates /bin/sh and /usr/bin/env). Expose
+  # the root-owned store binary there so the sandbox backend can find it.
+  system.activationScripts.bwrapForPi = ''
+    ln -sfn ${pkgs.bubblewrap}/bin/bwrap /usr/bin/bwrap
   '';
 
   # ZRAM as swap

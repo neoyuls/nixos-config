@@ -347,6 +347,7 @@
       ]))
 
     # Dev
+    clang
     gh
     pnpm
     micromamba
